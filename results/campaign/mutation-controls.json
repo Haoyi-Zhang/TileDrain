@@ -1,0 +1,716 @@
+[
+  {
+    "control": "missing-order",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "residual FIFO interleaving [1,0] violates P",
+    "instance": {
+      "p": [
+        0,
+        1
+      ],
+      "q": [
+        0,
+        1
+      ],
+      "lane": [
+        0,
+        1
+      ],
+      "weight": [
+        1,
+        1
+      ],
+      "capacity": [
+        1,
+        1
+      ],
+      "unsupported": 0
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [],
+        "necessity": []
+      }
+    }
+  },
+  {
+    "control": "unsupported-operation",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "unsupported operation would remain",
+    "instance": {
+      "p": [
+        0
+      ],
+      "q": [
+        0
+      ],
+      "lane": [
+        0
+      ],
+      "weight": [
+        1
+      ],
+      "capacity": [
+        1
+      ],
+      "unsupported": 1
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [],
+        "necessity": []
+      }
+    }
+  },
+  {
+    "control": "missing-capacity-drain",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "two residual units exceed one-unit queue",
+    "instance": {
+      "p": [
+        0,
+        0
+      ],
+      "q": [
+        0,
+        1
+      ],
+      "lane": [
+        0,
+        0
+      ],
+      "weight": [
+        1,
+        1
+      ],
+      "capacity": [
+        1
+      ],
+      "unsupported": 0
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [],
+        "necessity": []
+      }
+    }
+  },
+  {
+    "control": "nonideal-source-prefix",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "source predecessor zero is omitted",
+    "instance": {
+      "p": [
+        0,
+        0
+      ],
+      "q": [
+        0,
+        1
+      ],
+      "lane": [
+        0,
+        1
+      ],
+      "weight": [
+        1,
+        1
+      ],
+      "capacity": [
+        1,
+        1
+      ],
+      "unsupported": 2
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [
+          1
+        ],
+        "necessity": [
+          {
+            "event": 1,
+            "root": 1,
+            "kind": "unsupported"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "control": "forged-necessity",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "cut is safe but its extra event is not mandatory",
+    "instance": {
+      "p": [
+        0
+      ],
+      "q": [
+        0
+      ],
+      "lane": [
+        0
+      ],
+      "weight": [
+        1
+      ],
+      "capacity": [
+        1
+      ],
+      "unsupported": 0
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [
+          0
+        ],
+        "necessity": [
+          {
+            "event": 0,
+            "root": 0,
+            "kind": "unsupported"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "control": "unaligned-suffix-reason",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "a destination suffix is not forced by Q",
+    "instance": {
+      "p": [
+        0,
+        0
+      ],
+      "q": [
+        0,
+        0
+      ],
+      "lane": [
+        0,
+        0
+      ],
+      "weight": [
+        1,
+        1
+      ],
+      "capacity": [
+        1
+      ],
+      "unsupported": 0
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [
+          0
+        ],
+        "necessity": [
+          {
+            "event": 0,
+            "root": 0,
+            "kind": "capacity"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "control": "forged-no-least-meet",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "claimed witness intersection is feasible",
+    "instance": {
+      "p": [
+        0,
+        0
+      ],
+      "q": [
+        0,
+        0
+      ],
+      "lane": [
+        0,
+        0
+      ],
+      "weight": [
+        1,
+        1
+      ],
+      "capacity": [
+        1
+      ],
+      "unsupported": 0
+    },
+    "mutated_certificate": {
+      "kind": "no_least",
+      "left": [
+        0
+      ],
+      "right": [
+        0
+      ]
+    }
+  },
+  {
+    "control": "duplicate-drain-id",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "duplicate identity is not a set encoding",
+    "instance": {
+      "p": [
+        0
+      ],
+      "q": [
+        0
+      ],
+      "lane": [
+        0
+      ],
+      "weight": [
+        1
+      ],
+      "capacity": [
+        1
+      ],
+      "unsupported": 1
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [
+          0,
+          0
+        ],
+        "necessity": []
+      }
+    }
+  },
+  {
+    "control": "invalid-order-witness",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "self-pair cannot justify an earlier endpoint",
+    "instance": {
+      "p": [
+        0,
+        1
+      ],
+      "q": [
+        0,
+        1
+      ],
+      "lane": [
+        0,
+        1
+      ],
+      "weight": [
+        1,
+        1
+      ],
+      "capacity": [
+        1,
+        1
+      ],
+      "unsupported": 0
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [
+          0
+        ],
+        "necessity": [
+          {
+            "event": 0,
+            "root": 0,
+            "kind": "order",
+            "later": 0
+          }
+        ]
+      }
+    }
+  },
+  {
+    "control": "negative-size",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "input grammar admission",
+    "instance": {
+      "p": [
+        0
+      ],
+      "q": [
+        0
+      ],
+      "lane": [
+        0
+      ],
+      "weight": [
+        -1
+      ],
+      "capacity": [
+        1
+      ],
+      "unsupported": 0
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [],
+        "necessity": []
+      }
+    }
+  },
+  {
+    "control": "boolean-mask",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "input grammar admission",
+    "instance": {
+      "p": [
+        0
+      ],
+      "q": [
+        0
+      ],
+      "lane": [
+        0
+      ],
+      "weight": [
+        1
+      ],
+      "capacity": [
+        1
+      ],
+      "unsupported": true
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [],
+        "necessity": []
+      }
+    }
+  },
+  {
+    "control": "out-of-range-lane",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "input grammar admission",
+    "instance": {
+      "p": [
+        0
+      ],
+      "q": [
+        0
+      ],
+      "lane": [
+        1
+      ],
+      "weight": [
+        1
+      ],
+      "capacity": [
+        1
+      ],
+      "unsupported": 0
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [],
+        "necessity": []
+      }
+    }
+  },
+  {
+    "control": "unsupported-mask-overflow",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "input grammar admission",
+    "instance": {
+      "p": [
+        0
+      ],
+      "q": [
+        0
+      ],
+      "lane": [
+        0
+      ],
+      "weight": [
+        1
+      ],
+      "capacity": [
+        1
+      ],
+      "unsupported": 2
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [],
+        "necessity": []
+      }
+    }
+  },
+  {
+    "control": "nontransitive-source-order",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "input grammar admission",
+    "instance": {
+      "p": [
+        0,
+        0,
+        0
+      ],
+      "q": [
+        0,
+        1,
+        2
+      ],
+      "lane": [
+        0,
+        1,
+        2
+      ],
+      "weight": [
+        1,
+        1,
+        1
+      ],
+      "capacity": [
+        1,
+        1,
+        1
+      ],
+      "unsupported": 0
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [],
+        "necessity": []
+      }
+    }
+  },
+  {
+    "control": "source-omits-virtual-edge",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "input grammar admission",
+    "instance": {
+      "p": [
+        0,
+        1
+      ],
+      "q": [
+        0,
+        0
+      ],
+      "lane": [
+        0,
+        1
+      ],
+      "weight": [
+        1,
+        1
+      ],
+      "capacity": [
+        1,
+        1
+      ],
+      "unsupported": 0
+    },
+    "mutated_certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [],
+        "necessity": []
+      }
+    }
+  },
+  {
+    "control": "nonwrapping-capacity-sum",
+    "expected": "accept-exact",
+    "actual": "accept-exact",
+    "total_size": 18446744073709551614,
+    "certificate": {
+      "kind": "least",
+      "cut": {
+        "drain": [
+          0
+        ],
+        "necessity": [
+          {
+            "event": 0,
+            "root": 0,
+            "kind": "cone_capacity",
+            "lane": 0
+          }
+        ]
+      }
+    }
+  },
+  {
+    "control": "physical-width-carry",
+    "expected": "mismatch",
+    "actual": "mismatch",
+    "operands": [
+      15,
+      1,
+      0
+    ],
+    "width": 4,
+    "reference": [
+      0,
+      1
+    ],
+    "mutant": [
+      0,
+      0
+    ]
+  },
+  {
+    "control": "saturating-add",
+    "expected": "mismatch",
+    "actual": "mismatch",
+    "operands": [
+      15,
+      1,
+      0
+    ],
+    "width": 4,
+    "reference": [
+      0,
+      1
+    ],
+    "mutant": [
+      15,
+      1
+    ]
+  },
+  {
+    "control": "lost-carry-state",
+    "expected": "mismatch",
+    "actual": "mismatch",
+    "reference": [
+      0,
+      1,
+      0
+    ],
+    "mutant": [
+      0,
+      0,
+      0
+    ],
+    "empty_epoch_does_not_repair": true
+  },
+  {
+    "control": "wrong-endian-state",
+    "expected": "mismatch",
+    "actual": "mismatch",
+    "encoded_byte_order": "little",
+    "mutant_decode_byte_order": "big",
+    "payload_hex": "0201040301",
+    "original": [
+      [
+        258,
+        772,
+        1
+      ]
+    ],
+    "mutant": [
+      [
+        513,
+        1027,
+        1
+      ]
+    ]
+  },
+  {
+    "control": "truncated-state",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "exact length"
+  },
+  {
+    "control": "extra-state-byte",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "exact length"
+  },
+  {
+    "control": "non-bit-carry",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "carry range"
+  },
+  {
+    "control": "unused-high-state-bits",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "virtual width admission"
+  },
+  {
+    "control": "missing-carry-storage",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "global state contract, not opcode cut"
+  },
+  {
+    "control": "insufficient-wide-helper",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "physical sum must fit"
+  },
+  {
+    "control": "unknown-adapter",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "finite template grammar"
+  },
+  {
+    "control": "duplicate-opcode-capability",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "exact operation descriptor"
+  },
+  {
+    "control": "stale-completion-authority",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "donor cannot commit after abstract atomic transfer"
+  },
+  {
+    "control": "duplicate-completion",
+    "expected": "reject",
+    "actual": "reject",
+    "mechanism": "pending identity guard"
+  },
+  {
+    "control": "migration-only-nonprogress",
+    "expected": "safe-no-progress",
+    "actual": "safe-no-progress",
+    "accepted_transfers": 8,
+    "completions": 0,
+    "pending": [
+      0
+    ],
+    "scope": "finite prefix of indefinitely repeatable silent transfer"
+  }
+]

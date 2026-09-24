@@ -1,0 +1,32 @@
+[
+  {
+    "width": 1,
+    "operand_carry_states": 8,
+    "adapter_comparisons": 96
+  },
+  {
+    "width": 2,
+    "operand_carry_states": 32,
+    "adapter_comparisons": 384
+  },
+  {
+    "width": 3,
+    "operand_carry_states": 128,
+    "adapter_comparisons": 1536
+  },
+  {
+    "width": 4,
+    "operand_carry_states": 512,
+    "adapter_comparisons": 6144
+  },
+  {
+    "width": 5,
+    "operand_carry_states": 2048,
+    "adapter_comparisons": 24576
+  },
+  {
+    "width": 6,
+    "operand_carry_states": 8192,
+    "adapter_comparisons": 98304
+  }
+]

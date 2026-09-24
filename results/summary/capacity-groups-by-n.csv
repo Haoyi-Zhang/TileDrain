@@ -1,0 +1,6 @@
+n,fixed_groups,capacity_instances,robust_groups,effectively_aligned_instances,obstruction_vectors,mismatches
+0,1,1,1,1,0,0
+1,4,8,4,8,0,0
+2,48,168,46,162,2,0
+3,1408,7744,1292,7160,116,0
+4,91136,729088,80472,648256,10664,0

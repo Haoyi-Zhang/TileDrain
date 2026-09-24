@@ -1,0 +1,16 @@
+{
+  "suite": "weighted",
+  "instances": 512,
+  "least": 489,
+  "no_least": 23,
+  "oracle_mismatches": 0,
+  "certificate_failures": 0,
+  "independent_certificate_failures": 0,
+  "destination_traces_examined": 15235,
+  "least_drained_units": 8360,
+  "total_units_least_cases": 9527,
+  "cpu_seconds": 0.6156688810000001,
+  "wall_seconds": 0.6170953749999626,
+  "peak_rss_kib": 95152,
+  "workers": 1
+}

@@ -1,0 +1,103 @@
+{
+  "date_local": "2026-09-19",
+  "scope": "Same-agent clean-extraction validation of the completed internal research packet. Passing commands establish reproducibility of the declared finite evidence, not independent peer review, proof-assistant certification, hardware validation, or venue acceptance.",
+  "source_tree_checks": {
+    "python_bytecode_compile_passed": true,
+    "unit_tests_passed": 27,
+    "documented_example_and_fork_analyze_check_robust_passed": true,
+    "paper_built_with_external_official_acmart_2_20": true,
+    "paper_rebuild_render_changed_pages": 0,
+    "paper_pages": 22,
+    "content_pages": 20,
+    "reference_pages": 2,
+    "page_20_contains_conclusion_and_no_references": true,
+    "page_21_begins_references": true,
+    "pdf_preflight_warnings": [],
+    "fonts_embedded_subset_and_unicode": true,
+    "reviewer_facing_identity_or_private_path_scan": "clean",
+    "all_22_pages_rendered_at_200_dpi_and_visually_inspected": true,
+    "observed_clipping_overlap_broken_glyph_or_unreadable_table": false
+  },
+  "scientific_reproduction": {
+    "retained_campaign": {
+      "invocations": 24,
+      "cpu_seconds": 121.913787,
+      "wall_seconds": 112.516576,
+      "peak_child_rss_kib": 242812,
+      "workers": 1
+    },
+    "fresh_final_tree_run": {
+      "invocations": 27,
+      "cpu_seconds": 170.277026,
+      "wall_seconds": 159.154477,
+      "peak_child_rss_kib": 244796,
+      "workers": 1,
+      "all_returncodes_zero": true
+    },
+    "clean_candidate_archive_extraction_run": {
+      "invocations": 33,
+      "cpu_seconds": 173.518812,
+      "wall_seconds": 160.109432,
+      "peak_child_rss_kib": 245072,
+      "workers": 1,
+      "all_returncodes_zero": true,
+      "finer_chunking_only": true
+    },
+    "exact_rows_compared_by_n": [
+      1,
+      8,
+      168,
+      7744,
+      729088
+    ],
+    "exact_rows_total": 737009,
+    "exact_rows_equal": true,
+    "scientific_summaries_equal": true,
+    "capacity_groups_equal": true,
+    "weighted_exhaustive_outputs_equal": true,
+    "other_deterministic_files_equal": true,
+    "scaling_non_timing_fields_equal": true,
+    "timing_and_rss_are_not_equality_targets": true
+  },
+  "reference_and_ledger_integrity": {
+    "bibliography_entries": 36,
+    "unique_cited_entries": 36,
+    "all_bibliography_entries_cited": true,
+    "nocite_padding_absent": true,
+    "reference_audit_entries": 36,
+    "audit_keys_match_bibliography_keys": true,
+    "stable_identifiers_unique": true,
+    "metadata_rows_marked_verified": true,
+    "full_text_calibration_rows": 22,
+    "calibration_quota": {
+      "same_venue": 12,
+      "influential_or_award": 5,
+      "adjacent_venue": 5
+    },
+    "external_resource_rows": 29,
+    "claim_evidence_rows": 26,
+    "all_four_csv_ledgers_rectangular": true,
+    "repaired_issue": "One unquoted comma in an external_resources.csv access-date field had created a non-rectangular row; the table was normalized and a regression test was added."
+  },
+  "candidate_archive_clean_extraction": {
+    "project_single_root": true,
+    "project_root_entries": [
+      "CURRENT-STATE.md",
+      "artifact",
+      "paper",
+      "research-plan.md"
+    ],
+    "standalone_repository_single_root": true,
+    "project_artifact_equals_standalone_repository_byte_for_byte": true,
+    "publisher_class_or_bst_redistributed": false,
+    "nested_archives_bytecode_caches_or_vcs_metadata": false,
+    "unit_tests_passed_from_extraction": 27,
+    "documented_interfaces_passed_from_extraction": true,
+    "paper_rebuilt_from_extraction": true,
+    "rebuilt_pdf_pages": 22,
+    "rebuilt_pdf_render_changed_pages": 0,
+    "full_scientific_reproduction_and_reconciliation_passed_from_extraction": true
+  },
+  "final_repack_note": "After this record and the synchronized current-state text were refreshed, the archives were rebuilt. A final extraction rechecked the sole roots, exact four-entry project root, artifact/repository byte equality, absence of forbidden files, 27 tests, documented interfaces, bibliography/ledger counts, and a 22-page paper rebuild. No scientific source, frozen input, retained result, proof, manuscript source, bibliography, or figure changed after the clean candidate-archive reproduction.",
+  "status": "PASS_WITH_DECLARED_BOUNDARIES"
+}

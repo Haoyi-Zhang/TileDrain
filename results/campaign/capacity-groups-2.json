@@ -1,0 +1,14 @@
+{
+  "suite": "capacity-groups",
+  "n": 2,
+  "fixed_groups": 48,
+  "capacity_instances": 168,
+  "robust_groups": 46,
+  "effectively_aligned_instances": 162,
+  "obstruction_vectors": 2,
+  "mismatches": 0,
+  "cpu_seconds": 0.003998382999999994,
+  "wall_seconds": 0.0020833720000155154,
+  "peak_rss_kib": 93484,
+  "workers": 1
+}

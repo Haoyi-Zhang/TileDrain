@@ -1,0 +1,33 @@
+{
+  "suite": "exact",
+  "n": 4,
+  "p_start": 25,
+  "p_stop": 40,
+  "posets": 40,
+  "instances": 165888,
+  "structures": 1296,
+  "destination_traces_examined": 14330,
+  "feasible_cuts": 266052,
+  "least": 163262,
+  "no_least": 2626,
+  "aligned": 69344,
+  "effectively_aligned": 157204,
+  "capability_only_unsafe": 58752,
+  "capability_order_unsafe": 42930,
+  "least_drained_events": 567568,
+  "all_drain_events": 653048,
+  "oracle_mismatches": 0,
+  "certificate_failures": 0,
+  "independent_certificate_failures": 0,
+  "least_drain_histogram": [
+    324,
+    2814,
+    14662,
+    46418,
+    99044
+  ],
+  "cpu_seconds": 19.338158032000003,
+  "wall_seconds": 19.34054187400011,
+  "peak_rss_kib": 94632,
+  "workers": 1
+}

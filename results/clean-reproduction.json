@@ -1,0 +1,43 @@
+{
+  "exact_rows_compared_by_n": [
+    1,
+    8,
+    168,
+    7744,
+    729088
+  ],
+  "exact_rows_equal": true,
+  "other_deterministic_files_equal": [
+    "capacity-groups-0.csv.gz",
+    "capacity-groups-1.csv.gz",
+    "capacity-groups-2.csv.gz",
+    "capacity-groups-3.csv.gz",
+    "capacity-groups-4.csv.gz",
+    "episodes.jsonl.gz",
+    "weighted-exhaustive-groups.csv.gz",
+    "weighted-obstructions.jsonl.gz",
+    "weighted.jsonl.gz",
+    "arithmetic-domain.json",
+    "mutation-controls.json"
+  ],
+  "reference_audit_entries": 36,
+  "reproduction_date_local": "2026-09-19",
+  "retained_scientific_summary_fields_equal": true,
+  "scaling_non_timing_fields_equal": true,
+  "scientific_summaries_equal": true,
+  "scope": "Clean local executable reproduction, not an independent mathematical proof or hardware validation.",
+  "timing_comparison": "Not required: CPU, wall time, RSS and timing medians are machine observations.",
+  "unit_tests_passed": 27,
+  "weighted_exhaustive": {
+    "capacity_instances": 100973,
+    "effective_certificate_failures": 0,
+    "fixed_contracts": 11465,
+    "independent_certificate_failures": 0,
+    "least_instances": 98875,
+    "no_least_instances": 2098,
+    "obstruction_contracts": 936,
+    "oracle_mismatches": 0,
+    "production_certificate_failures": 0,
+    "robust_contracts": 10529
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "0": {
+    "raw_rows_equal": true,
+    "rows": 1
+  },
+  "1": {
+    "raw_rows_equal": true,
+    "rows": 8
+  },
+  "2": {
+    "raw_rows_equal": true,
+    "rows": 168
+  },
+  "3": {
+    "raw_rows_equal": true,
+    "rows": 7744
+  },
+  "4": {
+    "raw_rows_equal": true,
+    "rows": 729088
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "suite": "episodes",
+  "epochs": 256,
+  "events": 4088,
+  "migrations": 631,
+  "migrations_with_residual": 593,
+  "least_decisions": 615,
+  "no_least_decisions": 16,
+  "source_drained_events": 1759,
+  "destination_events": 2329,
+  "epochs_multiple_migrations": 221,
+  "step_value_mismatches": 0,
+  "program_result_mismatches": 0,
+  "duplicate_or_missing_events": 0,
+  "order_violations": 0,
+  "state_roundtrip_mismatches": 0,
+  "profiles": {
+    "preserved-lanes": 128,
+    "changed-lanes": 128
+  },
+  "cpu_seconds": 0.33992386399999996,
+  "wall_seconds": 0.3392447040000661,
+  "peak_rss_kib": 99500,
+  "workers": 1
+}

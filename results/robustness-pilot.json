@@ -1,0 +1,13 @@
+{
+  "suite": "capacity-robustness-pilot",
+  "max_events": 3,
+  "fixed_groups": 1461,
+  "capacity_instances": 7921,
+  "robust_groups": 1343,
+  "effectively_aligned_instances": 7331,
+  "obstruction_vectors": 118,
+  "mismatches": 0,
+  "cpu_seconds": 0.22283416200000006,
+  "peak_rss_kib": 93872,
+  "workers": 1
+}

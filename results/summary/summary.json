@@ -1,0 +1,420 @@
+{
+  "exact_by_n": [
+    {
+      "n": 0,
+      "instances": 1,
+      "structures": 1,
+      "destination_traces_examined": 1,
+      "feasible_cuts": 1,
+      "least": 1,
+      "no_least": 0,
+      "aligned": 1,
+      "effectively_aligned": 1,
+      "capability_only_unsafe": 0,
+      "capability_order_unsafe": 0,
+      "least_drained_events": 0,
+      "all_drain_events": 0,
+      "oracle_mismatches": 0,
+      "certificate_failures": 0,
+      "independent_certificate_failures": 0
+    },
+    {
+      "n": 1,
+      "instances": 8,
+      "structures": 2,
+      "destination_traces_examined": 4,
+      "feasible_cuts": 10,
+      "least": 8,
+      "no_least": 0,
+      "aligned": 8,
+      "effectively_aligned": 8,
+      "capability_only_unsafe": 2,
+      "capability_order_unsafe": 2,
+      "least_drained_events": 6,
+      "all_drain_events": 8,
+      "oracle_mismatches": 0,
+      "certificate_failures": 0,
+      "independent_certificate_failures": 0
+    },
+    {
+      "n": 2,
+      "instances": 168,
+      "structures": 12,
+      "destination_traces_examined": 46,
+      "feasible_cuts": 242,
+      "least": 166,
+      "no_least": 2,
+      "aligned": 144,
+      "effectively_aligned": 162,
+      "capability_only_unsafe": 56,
+      "capability_order_unsafe": 52,
+      "least_drained_events": 266,
+      "all_drain_events": 332,
+      "oracle_mismatches": 0,
+      "certificate_failures": 0,
+      "independent_certificate_failures": 0
+    },
+    {
+      "n": 3,
+      "instances": 7744,
+      "structures": 176,
+      "destination_traces_examined": 1260,
+      "feasible_cuts": 12586,
+      "least": 7562,
+      "no_least": 182,
+      "aligned": 4576,
+      "effectively_aligned": 7160,
+      "capability_only_unsafe": 2774,
+      "capability_order_unsafe": 2474,
+      "least_drained_events": 18730,
+      "all_drain_events": 22686,
+      "oracle_mismatches": 0,
+      "certificate_failures": 0,
+      "independent_certificate_failures": 0
+    },
+    {
+      "n": 4,
+      "instances": 729088,
+      "structures": 5696,
+      "destination_traces_examined": 73648,
+      "feasible_cuts": 1320818,
+      "least": 705220,
+      "no_least": 23868,
+      "aligned": 240576,
+      "effectively_aligned": 648256,
+      "capability_only_unsafe": 264970,
+      "capability_order_unsafe": 229296,
+      "least_drained_events": 2370338,
+      "all_drain_events": 2820880,
+      "oracle_mismatches": 0,
+      "certificate_failures": 0,
+      "independent_certificate_failures": 0
+    }
+  ],
+  "exact_totals": {
+    "instances": 737009,
+    "structures": 5887,
+    "destination_traces_examined": 74959,
+    "feasible_cuts": 1333657,
+    "least": 712957,
+    "no_least": 24052,
+    "aligned": 245305,
+    "effectively_aligned": 655587,
+    "capability_only_unsafe": 267802,
+    "capability_order_unsafe": 231824,
+    "least_drained_events": 2389340,
+    "all_drain_events": 2843906,
+    "oracle_mismatches": 0,
+    "certificate_failures": 0,
+    "independent_certificate_failures": 0
+  },
+  "capacity_groups_by_n": [
+    {
+      "n": 0,
+      "fixed_groups": 1,
+      "capacity_instances": 1,
+      "robust_groups": 1,
+      "effectively_aligned_instances": 1,
+      "obstruction_vectors": 0,
+      "mismatches": 0
+    },
+    {
+      "n": 1,
+      "fixed_groups": 4,
+      "capacity_instances": 8,
+      "robust_groups": 4,
+      "effectively_aligned_instances": 8,
+      "obstruction_vectors": 0,
+      "mismatches": 0
+    },
+    {
+      "n": 2,
+      "fixed_groups": 48,
+      "capacity_instances": 168,
+      "robust_groups": 46,
+      "effectively_aligned_instances": 162,
+      "obstruction_vectors": 2,
+      "mismatches": 0
+    },
+    {
+      "n": 3,
+      "fixed_groups": 1408,
+      "capacity_instances": 7744,
+      "robust_groups": 1292,
+      "effectively_aligned_instances": 7160,
+      "obstruction_vectors": 116,
+      "mismatches": 0
+    },
+    {
+      "n": 4,
+      "fixed_groups": 91136,
+      "capacity_instances": 729088,
+      "robust_groups": 80472,
+      "effectively_aligned_instances": 648256,
+      "obstruction_vectors": 10664,
+      "mismatches": 0
+    }
+  ],
+  "capacity_group_totals": {
+    "fixed_groups": 92597,
+    "capacity_instances": 737009,
+    "robust_groups": 81815,
+    "effectively_aligned_instances": 655587,
+    "obstruction_vectors": 10782,
+    "mismatches": 0
+  },
+  "weighted": {
+    "suite": "weighted",
+    "instances": 512,
+    "least": 489,
+    "no_least": 23,
+    "oracle_mismatches": 0,
+    "certificate_failures": 0,
+    "independent_certificate_failures": 0,
+    "destination_traces_examined": 15235,
+    "least_drained_units": 8360,
+    "total_units_least_cases": 9527
+  },
+  "weighted-exhaustive": {
+    "suite": "weighted-exhaustive",
+    "event_range": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "event_sizes": [
+      1,
+      2
+    ],
+    "lanes": 2,
+    "by_n": [
+      {
+        "n": 0,
+        "fixed_weighted_contracts": 1,
+        "capacity_instances": 1,
+        "least": 1,
+        "no_least": 0,
+        "robust_contracts": 1,
+        "obstruction_contracts": 0,
+        "oracle_mismatches": 0,
+        "production_certificate_failures": 0,
+        "independent_certificate_failures": 0,
+        "effective_certificate_failures": 0,
+        "destination_traces_examined": 1
+      },
+      {
+        "n": 1,
+        "fixed_weighted_contracts": 8,
+        "capacity_instances": 20,
+        "least": 20,
+        "no_least": 0,
+        "robust_contracts": 8,
+        "obstruction_contracts": 0,
+        "oracle_mismatches": 0,
+        "production_certificate_failures": 0,
+        "independent_certificate_failures": 0,
+        "effective_certificate_failures": 0,
+        "destination_traces_examined": 4
+      },
+      {
+        "n": 2,
+        "fixed_weighted_contracts": 192,
+        "capacity_instances": 984,
+        "least": 974,
+        "no_least": 10,
+        "robust_contracts": 184,
+        "obstruction_contracts": 8,
+        "oracle_mismatches": 0,
+        "production_certificate_failures": 0,
+        "independent_certificate_failures": 0,
+        "effective_certificate_failures": 0,
+        "destination_traces_examined": 46
+      },
+      {
+        "n": 3,
+        "fixed_weighted_contracts": 11264,
+        "capacity_instances": 99968,
+        "least": 97880,
+        "no_least": 2088,
+        "robust_contracts": 10336,
+        "obstruction_contracts": 928,
+        "oracle_mismatches": 0,
+        "production_certificate_failures": 0,
+        "independent_certificate_failures": 0,
+        "effective_certificate_failures": 0,
+        "destination_traces_examined": 1260
+      }
+    ],
+    "totals": {
+      "fixed_weighted_contracts": 11465,
+      "capacity_instances": 100973,
+      "least": 98875,
+      "no_least": 2098,
+      "robust_contracts": 10529,
+      "obstruction_contracts": 936,
+      "oracle_mismatches": 0,
+      "production_certificate_failures": 0,
+      "independent_certificate_failures": 0,
+      "effective_certificate_failures": 0,
+      "destination_traces_examined": 1311
+    },
+    "scope": "Complete generated microdomain; finite checking, not a proof over unbounded weights or event counts."
+  },
+  "arithmetic": {
+    "suite": "arithmetic",
+    "widths": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "operations": [
+      "COPY",
+      "XOR",
+      "ADD",
+      "ADC"
+    ],
+    "modes": [
+      "native",
+      "wide",
+      "split"
+    ],
+    "adapter_comparisons": 131040,
+    "state_roundtrips": 21840,
+    "multibyte_boundary_roundtrips": 192,
+    "arithmetic_mismatches": 0,
+    "state_mismatches": 0
+  },
+  "episodes": {
+    "suite": "episodes",
+    "epochs": 256,
+    "events": 4088,
+    "migrations": 631,
+    "migrations_with_residual": 593,
+    "least_decisions": 615,
+    "no_least_decisions": 16,
+    "source_drained_events": 1759,
+    "destination_events": 2329,
+    "epochs_multiple_migrations": 221,
+    "step_value_mismatches": 0,
+    "program_result_mismatches": 0,
+    "duplicate_or_missing_events": 0,
+    "order_violations": 0,
+    "state_roundtrip_mismatches": 0,
+    "profiles": {
+      "preserved-lanes": 128,
+      "changed-lanes": 128
+    }
+  },
+  "mutations": {
+    "suite": "mutations",
+    "controls": 31,
+    "unexpected_outcomes": 0
+  },
+  "weighted-obstructions": {
+    "suite": "weighted-obstructions",
+    "instances": 512,
+    "effectively_aligned": 409,
+    "obstruction_vectors": 103,
+    "destination_traces_examined": 3540,
+    "mismatches": 0
+  },
+  "scaling": {
+    "suite": "scaling",
+    "instances": 12,
+    "repetitions": 3,
+    "rows": 36,
+    "maximum_events": 512,
+    "failures": 0,
+    "timing_scope": "single-worker Python structural analysis and checking; not processor migration latency"
+  },
+  "scaling_median_ms": [
+    {
+      "n": 16,
+      "density": "sparse",
+      "general_cpu_seconds": 0.0,
+      "check_cpu_seconds": 0.0,
+      "aligned_cpu_seconds": 0.0
+    },
+    {
+      "n": 16,
+      "density": "dense",
+      "general_cpu_seconds": 0.0,
+      "check_cpu_seconds": 0.0,
+      "aligned_cpu_seconds": 0.0
+    },
+    {
+      "n": 32,
+      "density": "sparse",
+      "general_cpu_seconds": 0.0,
+      "check_cpu_seconds": 0.0,
+      "aligned_cpu_seconds": 0.0
+    },
+    {
+      "n": 32,
+      "density": "dense",
+      "general_cpu_seconds": 0.0,
+      "check_cpu_seconds": 0.0,
+      "aligned_cpu_seconds": 0.0
+    },
+    {
+      "n": 64,
+      "density": "sparse",
+      "general_cpu_seconds": 0.0,
+      "check_cpu_seconds": 0.0,
+      "aligned_cpu_seconds": 0.0
+    },
+    {
+      "n": 64,
+      "density": "dense",
+      "general_cpu_seconds": 1.4163080000000328,
+      "check_cpu_seconds": 0.0,
+      "aligned_cpu_seconds": 0.0
+    },
+    {
+      "n": 128,
+      "density": "sparse",
+      "general_cpu_seconds": 4.000486000000025,
+      "check_cpu_seconds": 3.998502999999931,
+      "aligned_cpu_seconds": 3.9993849999999664
+    },
+    {
+      "n": 128,
+      "density": "dense",
+      "general_cpu_seconds": 7.999599999999996,
+      "check_cpu_seconds": 4.000476999999947,
+      "aligned_cpu_seconds": 4.000386000000189
+    },
+    {
+      "n": 256,
+      "density": "sparse",
+      "general_cpu_seconds": 20.000186999999947,
+      "check_cpu_seconds": 15.99927000000001,
+      "aligned_cpu_seconds": 11.993775999999956
+    },
+    {
+      "n": 256,
+      "density": "dense",
+      "general_cpu_seconds": 27.974940000000004,
+      "check_cpu_seconds": 23.999952000000047,
+      "aligned_cpu_seconds": 16.005830999999972
+    },
+    {
+      "n": 512,
+      "density": "sparse",
+      "general_cpu_seconds": 80.00371400000006,
+      "check_cpu_seconds": 68.00088299999985,
+      "aligned_cpu_seconds": 47.996649999999974
+    },
+    {
+      "n": 512,
+      "density": "dense",
+      "general_cpu_seconds": 112.000031,
+      "check_cpu_seconds": 95.99422100000021,
+      "aligned_cpu_seconds": 79.99355900000005
+    }
+  ]
+}

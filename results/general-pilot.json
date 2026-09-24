@@ -1,0 +1,16 @@
+{
+  "instances": 7921,
+  "least": 7737,
+  "no_least": 184,
+  "structures": 191,
+  "destination_traces_examined": 1311,
+  "formula_oracle_mismatches": 0,
+  "certificate_failures": 0,
+  "events_max": 3,
+  "lanes": 2,
+  "weights": "unit",
+  "cpu_seconds": 0.383971692,
+  "wall_seconds": 0.38403152499995485,
+  "peak_rss_kib": 93232,
+  "workers": 1
+}

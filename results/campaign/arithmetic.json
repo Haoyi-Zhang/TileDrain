@@ -1,0 +1,31 @@
+{
+  "suite": "arithmetic",
+  "widths": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "operations": [
+    "COPY",
+    "XOR",
+    "ADD",
+    "ADC"
+  ],
+  "modes": [
+    "native",
+    "wide",
+    "split"
+  ],
+  "adapter_comparisons": 131040,
+  "state_roundtrips": 21840,
+  "multibyte_boundary_roundtrips": 192,
+  "arithmetic_mismatches": 0,
+  "state_mismatches": 0,
+  "cpu_seconds": 0.28783671499999985,
+  "wall_seconds": 0.2864395369999784,
+  "peak_rss_kib": 93864,
+  "workers": 1
+}

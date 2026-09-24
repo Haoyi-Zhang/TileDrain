@@ -1,0 +1,25 @@
+task,cpu_seconds,wall_seconds,peak_rss_kib,workers,returncode,command
+exact-0-00-01,1.052824,0.6423790329999974,94052,1,0,src/experiment.py --suite exact --n 0 --start 0 --stop 1 --output <output>
+exact-1-00-01,1.103146,0.6953217430000223,94000,1,0,src/experiment.py --suite exact --n 1 --start 0 --stop 1 --output <output>
+exact-2-00-02,1.063992,0.6565731790001337,93996,1,0,src/experiment.py --suite exact --n 2 --start 0 --stop 2 --output <output>
+exact-3-00-07,1.862947,1.4540084049999678,94380,1,0,src/experiment.py --suite exact --n 3 --start 0 --stop 7 --output <output>
+exact-4-00-05,22.608352,22.214868303000003,94712,1,0,src/experiment.py --suite exact --n 4 --start 0 --stop 5 --output <output>
+exact-4-05-15,25.245050999999997,24.85693861300001,94636,1,0,src/experiment.py --suite exact --n 4 --start 5 --stop 15 --output <output>
+exact-4-15-25,16.619985000000003,16.28741667700001,94636,1,0,src/experiment.py --suite exact --n 4 --start 15 --stop 25 --output <output>
+exact-4-25-40,20.401985,20.00194414600014,94632,1,0,src/experiment.py --suite exact --n 4 --start 25 --stop 40 --output <output>
+weighted,1.7103669999999997,1.3148960830001215,95152,1,0,src/experiment.py --suite weighted --output <output>
+arithmetic,1.3219190000000003,0.9112057089998871,95152,1,0,src/experiment.py --suite arithmetic --output <output>
+episodes,1.4126290000000004,1.0012912069998947,99500,1,0,src/experiment.py --suite episodes --output <output>
+scaling,3.190594999999999,2.782382478000045,104788,1,0,src/experiment.py --suite scaling --output <output>
+weighted-exhaustive,7.655285000000001,7.24465829199994,104788,1,0,src/weighted_exhaustive.py --output <output>
+mutations,1.0518929999999997,0.6405515840001499,104788,1,0,src/mutations.py --output <output>
+capacity-groups-0,1.0174039999999998,0.6128187179999713,104788,1,0,src/capacity_audit.py --n 0 --source <output> --output <output>
+capacity-groups-1,0.9437990000000017,0.5681277070000306,104788,1,0,src/capacity_audit.py --n 1 --source <output> --output <output>
+capacity-groups-2,0.9788690000000007,0.6359026459999768,104788,1,0,src/capacity_audit.py --n 2 --source <output> --output <output>
+capacity-groups-3,1.0437049999999988,0.6441251709998141,104788,1,0,src/capacity_audit.py --n 3 --source <output> --output <output>
+capacity-groups-4,6.151860999999999,5.740482029000077,242812,1,0,src/capacity_audit.py --n 4 --source <output> --output <output>
+weighted-obstructions,1.1880420000000005,0.7766253009999673,242812,1,0,src/capacity_audit.py --weighted --output <output>
+unit-tests,1.082155999999999,0.7090068970001084,242812,1,0,-m unittest discover -s tests -v
+documented-interface,1.050704000000002,0.686992716000077,242812,1,0,src/cli.py analyze inputs/example.json --output <temporary-certificate>
+documented-interface,1.0543440000000022,0.7423270440001488,242812,1,0,src/cli.py check inputs/example.json --certificate <temporary-certificate>
+documented-interface,1.1019329999999992,0.6957326140000077,242812,1,0,src/cli.py robust inputs/example.json

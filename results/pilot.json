@@ -1,0 +1,36 @@
+{
+  "phase": "pilot",
+  "events_max": 3,
+  "lanes": 2,
+  "weight": 1,
+  "support_masks": "all",
+  "instances": 3289,
+  "order_lane_source_structures": 83,
+  "destination_traces_examined": 477,
+  "formula_oracle_mismatches": 0,
+  "least_certificate_failures": 0,
+  "negative_control": {
+    "virtual_edges": [
+      [
+        0,
+        1
+      ]
+    ],
+    "destination_lanes": [
+      0,
+      1
+    ],
+    "unsafe_completion_order": [
+      1,
+      0
+    ],
+    "opcode_only_rejected": true,
+    "least_drain": [
+      0
+    ]
+  },
+  "cpu_seconds": 0.08156270699999996,
+  "wall_seconds": 0.08158160400000725,
+  "peak_rss_kib": 93064,
+  "workers": 1
+}

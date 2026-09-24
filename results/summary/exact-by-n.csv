@@ -1,0 +1,6 @@
+n,instances,structures,destination_traces_examined,feasible_cuts,least,no_least,aligned,effectively_aligned,capability_only_unsafe,capability_order_unsafe,least_drained_events,all_drain_events,oracle_mismatches,certificate_failures,independent_certificate_failures
+0,1,1,1,1,1,0,1,1,0,0,0,0,0,0,0
+1,8,2,4,10,8,0,8,8,2,2,6,8,0,0,0
+2,168,12,46,242,166,2,144,162,56,52,266,332,0,0,0
+3,7744,176,1260,12586,7562,182,4576,7160,2774,2474,18730,22686,0,0,0
+4,729088,5696,73648,1320818,705220,23868,240576,648256,264970,229296,2370338,2820880,0,0,0

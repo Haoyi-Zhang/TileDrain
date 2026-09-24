@@ -1,0 +1,9 @@
+{
+  "suite": "mutations",
+  "controls": 31,
+  "unexpected_outcomes": 0,
+  "cpu_seconds": 0.0,
+  "wall_seconds": 0.0008994370000436902,
+  "peak_rss_kib": 93228,
+  "workers": 1
+}

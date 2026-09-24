@@ -1,0 +1,90 @@
+{
+  "suite": "weighted-exhaustive",
+  "event_range": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "event_sizes": [
+    1,
+    2
+  ],
+  "lanes": 2,
+  "by_n": [
+    {
+      "n": 0,
+      "fixed_weighted_contracts": 1,
+      "capacity_instances": 1,
+      "least": 1,
+      "no_least": 0,
+      "robust_contracts": 1,
+      "obstruction_contracts": 0,
+      "oracle_mismatches": 0,
+      "production_certificate_failures": 0,
+      "independent_certificate_failures": 0,
+      "effective_certificate_failures": 0,
+      "destination_traces_examined": 1
+    },
+    {
+      "n": 1,
+      "fixed_weighted_contracts": 8,
+      "capacity_instances": 20,
+      "least": 20,
+      "no_least": 0,
+      "robust_contracts": 8,
+      "obstruction_contracts": 0,
+      "oracle_mismatches": 0,
+      "production_certificate_failures": 0,
+      "independent_certificate_failures": 0,
+      "effective_certificate_failures": 0,
+      "destination_traces_examined": 4
+    },
+    {
+      "n": 2,
+      "fixed_weighted_contracts": 192,
+      "capacity_instances": 984,
+      "least": 974,
+      "no_least": 10,
+      "robust_contracts": 184,
+      "obstruction_contracts": 8,
+      "oracle_mismatches": 0,
+      "production_certificate_failures": 0,
+      "independent_certificate_failures": 0,
+      "effective_certificate_failures": 0,
+      "destination_traces_examined": 46
+    },
+    {
+      "n": 3,
+      "fixed_weighted_contracts": 11264,
+      "capacity_instances": 99968,
+      "least": 97880,
+      "no_least": 2088,
+      "robust_contracts": 10336,
+      "obstruction_contracts": 928,
+      "oracle_mismatches": 0,
+      "production_certificate_failures": 0,
+      "independent_certificate_failures": 0,
+      "effective_certificate_failures": 0,
+      "destination_traces_examined": 1260
+    }
+  ],
+  "totals": {
+    "fixed_weighted_contracts": 11465,
+    "capacity_instances": 100973,
+    "least": 98875,
+    "no_least": 2098,
+    "robust_contracts": 10529,
+    "obstruction_contracts": 936,
+    "oracle_mismatches": 0,
+    "production_certificate_failures": 0,
+    "independent_certificate_failures": 0,
+    "effective_certificate_failures": 0,
+    "destination_traces_examined": 1311
+  },
+  "scope": "Complete generated microdomain; finite checking, not a proof over unbounded weights or event counts.",
+  "cpu_seconds": 6.667159709,
+  "wall_seconds": 6.669248850000031,
+  "peak_rss_kib": 93616,
+  "workers": 1
+}

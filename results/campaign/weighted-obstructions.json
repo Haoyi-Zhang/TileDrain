@@ -1,0 +1,12 @@
+{
+  "suite": "weighted-obstructions",
+  "instances": 512,
+  "effectively_aligned": 409,
+  "obstruction_vectors": 103,
+  "destination_traces_examined": 3540,
+  "mismatches": 0,
+  "cpu_seconds": 0.16799026100000014,
+  "wall_seconds": 0.16926203100001658,
+  "peak_rss_kib": 94512,
+  "workers": 1
+}
