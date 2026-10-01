@@ -4,7 +4,7 @@ Results describe generated finite machines and Python checking costs only.
 Invoke separate chunks as documented in README.md; no scientific subprocesses.
 """
 from __future__ import annotations
-import argparse,csv,gzip,itertools,json,resource,sys,time
+import argparse,csv,gzip,itertools,json,os,platform,resource,sys,time
 from dataclasses import replace
 from pathlib import Path
 from contracts import Instance,bits,closure,lower_closure,safe,synthesize,verify
@@ -17,6 +17,90 @@ from semantics import OPS,capability,reference_alu,adapter_alu,encode_state,deco
 from simulator import run_epoch
 
 ROOT=Path(__file__).resolve().parents[1]
+
+
+def _cpu_model() -> str | None:
+    cpuinfo = Path('/proc/cpuinfo')
+    if cpuinfo.is_file():
+        fields: dict[str, str] = {}
+        for line in cpuinfo.read_text(encoding='utf-8', errors='replace').splitlines():
+            key, separator, value = line.partition(':')
+            if separator and value.strip():
+                fields.setdefault(key.strip().lower(), value.strip())
+        for key in ('model name', 'hardware', 'cpu model'):
+            if fields.get(key):
+                return fields[key]
+        processor = fields.get('processor')
+        if processor and not processor.isdecimal():
+            return processor
+    value = platform.processor().strip()
+    return value or None
+
+
+def _visible_container_markers() -> list[str]:
+    markers: list[str] = []
+    for path, label in ((Path('/.dockerenv'), '/.dockerenv'), (Path('/run/.containerenv'), '/run/.containerenv')):
+        if path.exists():
+            markers.append(label)
+    for path in (Path('/proc/1/cgroup'), Path('/proc/self/cgroup')):
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding='utf-8', errors='replace').lower()
+        for token in ('docker', 'containerd', 'kubepods', 'lxc', 'podman'):
+            if token in text:
+                markers.append(f'{path}:{token}')
+    return sorted(set(markers))
+
+
+def _scaling_environment() -> dict:
+    clock = time.get_clock_info('process_time')
+    markers = _visible_container_markers()
+    affinity = None
+    if hasattr(os, 'sched_getaffinity'):
+        try:
+            affinity = len(os.sched_getaffinity(0))
+        except OSError:
+            affinity = None
+    return {
+        'record_status': 'captured-during-scaling-run',
+        'timing_data': 'scaling.csv',
+        'summary_data': 'scaling.json',
+        'cpu': {
+            'model': _cpu_model(),
+            'architecture': platform.machine() or None,
+            'logical_cpus_visible': os.cpu_count(),
+            'affinity_cpus_visible': affinity,
+        },
+        'python': {
+            'implementation': platform.python_implementation(),
+            'version': platform.python_version(),
+        },
+        'os': {
+            'system': platform.system() or None,
+            'release': platform.release() or None,
+            'version': platform.version() or None,
+        },
+        'container_or_virtualization': {
+            'status': 'visible-container-markers' if markers else 'no-visible-container-marker-detected',
+            'visible_markers': markers,
+            'limitation': 'Visible markers are recorded only; their absence does not establish bare-metal execution or exclude a hypervisor.',
+        },
+        'timer': {
+            'name': 'time.process_time',
+            'implementation': clock.implementation,
+            'monotonic': clock.monotonic,
+            'adjustable': clock.adjustable,
+            'resolution_seconds': clock.resolution,
+            'unit_in_csv': 'seconds',
+        },
+        'run': {
+            'workers': 1,
+            'repetitions_per_shape': 3,
+            'address_space_limit_bytes': resource.getrlimit(resource.RLIMIT_AS)[0],
+            'cpu_limit_seconds': resource.getrlimit(resource.RLIMIT_CPU)[0],
+        },
+        'comparability': 'These process-CPU observations are run- and environment-specific; they are not device migration latency and are not normalized for cross-machine comparison.',
+    }
 
 
 def baseline_masks(x):
@@ -181,6 +265,9 @@ def scaling(out):
                          general_cpu_seconds=analysis_cpu,check_cpu_seconds=check_cpu,aligned_cpu_seconds=fast_cpu))
     with (out/'scaling.csv').open('w',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
+    (out/'scaling-environment.json').write_text(
+        json.dumps(_scaling_environment(), indent=2, sort_keys=True)+'\n', encoding='utf-8'
+    )
     return dict(suite='scaling',instances=12,repetitions=3,rows=len(rows),maximum_events=512,failures=0,
                 timing_scope='single-worker Python structural analysis and checking; not processor migration latency')
 

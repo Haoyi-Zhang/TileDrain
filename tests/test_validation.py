@@ -60,7 +60,42 @@ class IndependentCertificateTests(unittest.TestCase):
         x = Instance((0, 0), (0, 0), (0, 0), (1, 2), (2,), 0)
         cert = analyze(x)
         self.assertEqual(cert['kind'], 'no_least')
+        self.assertTrue(verify_analysis(x, cert))
         self.assertTrue(independent_verify_analysis(x, cert))
+
+    def test_independent_accepts_one_event_least_certificate(self):
+        x = Instance((0,), (0,), (0,), (1,), (0,), 0)
+        cert = analyze(x)
+        self.assertEqual(cert['kind'], 'least')
+        self.assertTrue(verify_analysis(x, cert))
+        self.assertTrue(independent_verify_analysis(x, cert))
+
+    def test_malformed_event_lists_are_rejected_without_exception(self):
+        least_x = Instance((0, 1), (0, 1), (0, 0), (1, 1), (1,), 0)
+        least_cert = analyze(least_x)
+        self.assertEqual(least_cert['kind'], 'least')
+        self.assertTrue(verify_analysis(least_x, least_cert))
+        self.assertTrue(independent_verify_analysis(least_x, least_cert))
+
+        no_least_x = Instance((0, 0), (0, 0), (0, 0), (1, 2), (2,), 0)
+        no_least_cert = analyze(no_least_x)
+        self.assertEqual(no_least_cert['kind'], 'no_least')
+        self.assertTrue(verify_analysis(no_least_x, no_least_cert))
+        self.assertTrue(independent_verify_analysis(no_least_x, no_least_cert))
+
+        malformed = ([{}], [[]], [0, None], [True], [0, 0], [-1], [2])
+        for payload in malformed:
+            with self.subTest(kind='least', payload=repr(payload)):
+                bad = deepcopy(least_cert)
+                bad['cut']['drain'] = deepcopy(payload)
+                self.assertFalse(verify_analysis(least_x, bad))
+                self.assertFalse(independent_verify_analysis(least_x, bad))
+            for field in ('left', 'right'):
+                with self.subTest(kind='no_least', field=field, payload=repr(payload)):
+                    bad = deepcopy(no_least_cert)
+                    bad[field] = deepcopy(payload)
+                    self.assertFalse(verify_analysis(no_least_x, bad))
+                    self.assertFalse(independent_verify_analysis(no_least_x, bad))
 
     def test_forged_cone_capacity_lane_is_rejected(self):
         x = Instance((0, 0), (0, 0), (0, 1), (2, 1), (1, 1), 0)

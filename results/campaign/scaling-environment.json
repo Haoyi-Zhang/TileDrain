@@ -1,0 +1,49 @@
+{
+  "record_status": "retrospective-partial-from-retained-materials",
+  "timing_data": "scaling.csv",
+  "summary_data": "../summary/summary.json",
+  "source_code": "../../src/experiment.py",
+  "historical_environment": {
+    "cpu_model": "unknown-not-recorded",
+    "architecture": "unknown-not-recorded",
+    "python_implementation": "unknown-not-recorded",
+    "python_version": "unknown-not-recorded",
+    "os_name_and_version": "unknown-not-recorded",
+    "container_or_virtualization_visibility": "unknown-not-recorded",
+    "process_clock_resolution_seconds": "unknown-not-recorded"
+  },
+  "recoverable_run_facts": {
+    "timer_name": "time.process_time",
+    "timer_semantics": "process CPU time as returned by the Python standard library",
+    "unit_in_csv": "seconds",
+    "workers": 1,
+    "repetitions_per_shape": 3,
+    "events": [
+      16,
+      32,
+      64,
+      128,
+      256,
+      512
+    ],
+    "shapes": {
+      "sparse": "two lanes",
+      "dense": "eight lanes"
+    },
+    "address_space_limit_bytes": 3221225472,
+    "cpu_limit_seconds": 40,
+    "scaling_summary_cpu_seconds": 2.107751284,
+    "scaling_summary_wall_seconds": 2.108124170999872,
+    "scaling_summary_peak_rss_kib": 104788
+  },
+  "provenance_note": "The retained CSV and suite summary are genuine project assets, but the original timing run did not save the requested host and runtime identity fields. This record deliberately leaves them unknown and does not substitute the machine used for later repair or validation.",
+  "comparability": "The retained medians support only a rough within-run description of single-worker Python checking cost. They are not normalized for cross-machine comparison and are not processor migration latency, throughput, energy, or silicon performance.",
+  "timer": {
+    "name": "time.process_time",
+    "implementation": "unknown-not-recorded",
+    "monotonic": "unknown-not-recorded",
+    "adjustable": "unknown-not-recorded",
+    "resolution_seconds": "unknown-not-recorded",
+    "unit_in_csv": "seconds"
+  }
+}

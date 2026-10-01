@@ -1,4 +1,5 @@
 {
+  "scientific_summaries_equal": true,
   "exact_rows_compared_by_n": [
     1,
     8,
@@ -20,24 +21,16 @@
     "arithmetic-domain.json",
     "mutation-controls.json"
   ],
-  "reference_audit_entries": 36,
-  "reproduction_date_local": "2026-09-19",
-  "retained_scientific_summary_fields_equal": true,
   "scaling_non_timing_fields_equal": true,
-  "scientific_summaries_equal": true,
-  "scope": "Clean local executable reproduction, not an independent mathematical proof or hardware validation.",
+  "scaling_environment_records_present": true,
+  "retained_scaling_environment_status": "retrospective-partial-from-retained-materials",
+  "reproduced_scaling_environment_status": "captured-during-scaling-run",
   "timing_comparison": "Not required: CPU, wall time, RSS and timing medians are machine observations.",
-  "unit_tests_passed": 27,
-  "weighted_exhaustive": {
-    "capacity_instances": 100973,
-    "effective_certificate_failures": 0,
-    "fixed_contracts": 11465,
-    "independent_certificate_failures": 0,
-    "least_instances": 98875,
-    "no_least_instances": 2098,
-    "obstruction_contracts": 936,
-    "oracle_mismatches": 0,
-    "production_certificate_failures": 0,
-    "robust_contracts": 10529
-  }
+  "scope": "Clean local executable reproduction, not an independent mathematical proof or hardware validation.",
+  "reproduction_date_local": "2026-09-25",
+  "unit_tests_passed": 29,
+  "reference_audit_entries": 36,
+  "exact_rows_total": 737009,
+  "post_repair_scope": "Full deterministic scientific rerun after the timing-data synchronization, independent-list validation, and scaling-environment recording repairs.",
+  "manuscript_timing_source": "The manuscript continues to use results/campaign/scaling.csv; the fresh timing rows are retained separately and do not replace historical observations."
 }

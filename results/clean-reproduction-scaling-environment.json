@@ -1,0 +1,40 @@
+{
+  "comparability": "These process-CPU observations are run- and environment-specific; they are not device migration latency and are not normalized for cross-machine comparison.",
+  "container_or_virtualization": {
+    "limitation": "Visible markers are recorded only; their absence does not establish bare-metal execution or exclude a hypervisor.",
+    "status": "no-visible-container-marker-detected",
+    "visible_markers": []
+  },
+  "cpu": {
+    "affinity_cpus_visible": 5,
+    "architecture": "x86_64",
+    "logical_cpus_visible": 5,
+    "model": "INTEL(R) XEON(R) PLATINUM 8573C"
+  },
+  "os": {
+    "release": "6.18.44",
+    "system": "Linux",
+    "version": "#1 SMP Tue Sep 22 17:26:16 UTC 2026"
+  },
+  "python": {
+    "implementation": "CPython",
+    "version": "3.13.5"
+  },
+  "record_status": "captured-during-scaling-run",
+  "run": {
+    "address_space_limit_bytes": 3221225472,
+    "cpu_limit_seconds": 40,
+    "repetitions_per_shape": 3,
+    "workers": 1
+  },
+  "summary_data": "scaling.json",
+  "timer": {
+    "adjustable": false,
+    "implementation": "clock_gettime(CLOCK_PROCESS_CPUTIME_ID)",
+    "monotonic": true,
+    "name": "time.process_time",
+    "resolution_seconds": 1e-09,
+    "unit_in_csv": "seconds"
+  },
+  "timing_data": "scaling.csv"
+}

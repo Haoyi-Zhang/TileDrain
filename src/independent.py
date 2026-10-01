@@ -60,11 +60,13 @@ def _validate_instance(x: Any) -> bool:
 
 
 def _mask(events: Any, n: int) -> int | None:
-    if type(events) is not list:
-        return None
-    if events != sorted(set(events)):
+    # Validate the bounded JSON list and every scalar before any operation
+    # (sorting or hashing) that assumes homogeneous, hashable integers.
+    if type(events) is not list or len(events) > n:
         return None
     if any(type(e) is not int or not 0 <= e < n for e in events):
+        return None
+    if len(events) != len(set(events)) or events != sorted(events):
         return None
     return sum(1 << e for e in events)
 

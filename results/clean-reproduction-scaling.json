@@ -1,0 +1,13 @@
+{
+  "suite": "scaling",
+  "instances": 12,
+  "repetitions": 3,
+  "rows": 36,
+  "maximum_events": 512,
+  "failures": 0,
+  "timing_scope": "single-worker Python structural analysis and checking; not processor migration latency",
+  "cpu_seconds": 2.475902999,
+  "wall_seconds": 2.4758754020000424,
+  "peak_rss_kib": 105264,
+  "workers": 1
+}

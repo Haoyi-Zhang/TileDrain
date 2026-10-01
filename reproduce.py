@@ -71,7 +71,7 @@ def exact(out:Path,n:int,start:int,stop:int) -> None:
 def remaining(out:Path) -> None:
     for name in ('weighted','arithmetic','episodes','scaling'):
         raw={'weighted':('weighted.jsonl.gz',),'arithmetic':('arithmetic-domain.json',),
-             'episodes':('episodes.jsonl.gz',),'scaling':('scaling.csv',)}[name]
+             'episodes':('episodes.jsonl.gz',),'scaling':('scaling.csv','scaling-environment.json')}[name]
         job(out,name,['src/experiment.py','--suite',name],raw)
     job(out,'weighted-exhaustive',['src/weighted_exhaustive.py'],('weighted-exhaustive-groups.csv.gz',))
     job(out,'mutations',['src/mutations.py'],('mutation-controls.json',))
@@ -96,6 +96,19 @@ def exact_rows(folder:Path,n:int):
     for c in chunks:
         p=folder/f"exact-{n}-{c['p_start']:02d}-{c['p_stop']:02d}.csv.gz"
         with gzip.open(p,'rt',newline='') as f:yield from csv.DictReader(f)
+
+
+def scaling_environment_status(path:Path) -> str:
+    data=json.loads(path.read_text(encoding='utf-8'))
+    if data.get('timing_data')!='scaling.csv':
+        raise ValueError('scaling environment record is not linked to scaling.csv')
+    timer=data.get('timer')
+    if type(timer) is not dict or timer.get('name')!='time.process_time' or timer.get('unit_in_csv')!='seconds':
+        raise ValueError('scaling environment record has an incompatible timer declaration')
+    status=data.get('record_status')
+    if type(status) is not str or not status:
+        raise ValueError('scaling environment record lacks provenance status')
+    return status
 
 
 def reconcile(out:Path) -> None:
@@ -127,8 +140,13 @@ def reconcile(out:Path) -> None:
     with (canonical/'scaling.csv').open(newline='') as a,(out/'scaling.csv').open(newline='') as b:
         def stable(rows):return [{k:v for k,v in r.items() if not k.endswith('_seconds')} for r in csv.DictReader(rows)]
         if stable(a)!=stable(b):raise ValueError('scaling shape or correctness mismatch')
+    retained_environment=scaling_environment_status(canonical/'scaling-environment.json')
+    reproduced_environment=scaling_environment_status(out/'scaling-environment.json')
     result={'scientific_summaries_equal':True,'exact_rows_compared_by_n':counts,'exact_rows_equal':True,
             'other_deterministic_files_equal':compared,'scaling_non_timing_fields_equal':True,
+            'scaling_environment_records_present':True,
+            'retained_scaling_environment_status':retained_environment,
+            'reproduced_scaling_environment_status':reproduced_environment,
             'timing_comparison':'Not required: CPU, wall time, RSS and timing medians are machine observations.',
             'scope':'Clean local executable reproduction, not an independent mathematical proof or hardware validation.'}
     (out/'reconciliation.json').write_text(json.dumps(result,indent=2)+'\n')
