@@ -13,7 +13,6 @@ import csv
 import gzip
 import itertools
 import json
-import resource
 import time
 from pathlib import Path
 
@@ -138,6 +137,7 @@ def run(out: Path) -> dict:
 
 
 def main() -> None:
+    import resource
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()

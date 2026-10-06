@@ -4,7 +4,7 @@ Results describe generated finite machines and Python checking costs only.
 Invoke separate chunks as documented in README.md; no scientific subprocesses.
 """
 from __future__ import annotations
-import argparse,csv,gzip,itertools,json,os,platform,resource,sys,time
+import argparse,csv,gzip,itertools,json,os,platform,sys,time
 from dataclasses import replace
 from pathlib import Path
 from contracts import Instance,bits,closure,lower_closure,safe,synthesize,verify
@@ -53,6 +53,7 @@ def _visible_container_markers() -> list[str]:
 
 
 def _scaling_environment() -> dict:
+    import resource  # Scaling provenance uses the active POSIX runner's limits.
     clock = time.get_clock_info('process_time')
     markers = _visible_container_markers()
     affinity = None
@@ -273,6 +274,7 @@ def scaling(out):
 
 
 def main():
+    import resource
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--suite',choices=['exact','weighted','arithmetic','episodes','scaling'],required=True)
     p.add_argument('--n',type=int,default=3);p.add_argument('--start',type=int,default=0);p.add_argument('--stop',type=int,default=100)

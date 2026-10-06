@@ -4,7 +4,7 @@ Each row is a named hand-constructed fault, not a claim of complete mutation
 coverage. No third-party system, exploit or real device is involved.
 """
 from __future__ import annotations
-import json,resource,time
+import json,time
 from copy import deepcopy
 from dataclasses import replace
 from pathlib import Path
@@ -100,6 +100,7 @@ def run_controls() -> list[dict]:
 
 if __name__=='__main__':
     import argparse
+    import resource  # POSIX limits belong to the runner, not the portable controls.
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',type=Path,required=True);args=p.parse_args()
     resource.setrlimit(resource.RLIMIT_AS,(3*1024**3,3*1024**3));resource.setrlimit(resource.RLIMIT_CPU,(40,40))
     cpu=time.process_time();wall=time.perf_counter();rows=run_controls();args.output.mkdir(parents=True,exist_ok=True)

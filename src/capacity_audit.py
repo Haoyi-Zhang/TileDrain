@@ -4,7 +4,7 @@ Exact input verdicts come from retained permutation-oracle rows, not from
 re-running the diagnosis and calling its own answers a reference.
 """
 from __future__ import annotations
-import argparse,csv,gzip,itertools,json,resource,time
+import argparse,csv,gzip,itertools,json,time
 from pathlib import Path
 from contracts import Instance,verify
 from robust import effectively_aligned,obstruction_capacity,synthesize_effective
@@ -96,6 +96,7 @@ def weighted_obstructions(out: Path) -> dict:
 
 
 def main() -> None:
+    import resource
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--n',type=int,choices=range(5));parser.add_argument('--weighted',action='store_true')
     parser.add_argument('--source',type=Path,default=ROOT/'results/campaign')
