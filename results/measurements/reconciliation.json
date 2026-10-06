@@ -1,0 +1,30 @@
+{
+  "scientific_summaries_equal": true,
+  "exact_rows_compared_by_n": [
+    1,
+    8,
+    168,
+    7744,
+    729088
+  ],
+  "exact_rows_equal": true,
+  "other_deterministic_files_equal": [
+    "capacity-groups-0.csv.gz",
+    "capacity-groups-1.csv.gz",
+    "capacity-groups-2.csv.gz",
+    "capacity-groups-3.csv.gz",
+    "capacity-groups-4.csv.gz",
+    "episodes.jsonl.gz",
+    "weighted-exhaustive-groups.csv.gz",
+    "weighted-obstructions.jsonl.gz",
+    "weighted.jsonl.gz",
+    "arithmetic-domain.json",
+    "mutation-controls.json"
+  ],
+  "scaling_non_timing_fields_equal": true,
+  "scaling_environment_records_present": true,
+  "retained_scaling_environment_status": "retrospective-partial-from-retained-materials",
+  "reproduced_scaling_environment_status": "captured-during-scaling-run",
+  "timing_comparison": "Not required: CPU, wall time, RSS and timing medians are machine observations.",
+  "scope": "Clean local executable reproduction, not an independent mathematical proof or hardware validation."
+}

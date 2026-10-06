@@ -1,0 +1,40 @@
+{
+  "comparability": "These process-CPU observations are run- and environment-specific; they are not device migration latency and are not normalized for cross-machine comparison.",
+  "container_or_virtualization": {
+    "limitation": "Visible markers are recorded only; their absence does not establish bare-metal execution or exclude a hypervisor.",
+    "status": "no-visible-container-marker-detected",
+    "visible_markers": []
+  },
+  "cpu": {
+    "affinity_cpus_visible": 2,
+    "architecture": "x86_64",
+    "logical_cpus_visible": 2,
+    "model": "AMD EPYC 9V45 96-Core Processor"
+  },
+  "os": {
+    "release": "6.17.0-1022-azure",
+    "system": "Linux",
+    "version": "#22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026"
+  },
+  "python": {
+    "implementation": "CPython",
+    "version": "3.12.14"
+  },
+  "record_status": "captured-during-scaling-run",
+  "run": {
+    "address_space_limit_bytes": 3221225472,
+    "cpu_limit_seconds": 40,
+    "repetitions_per_shape": 3,
+    "workers": 1
+  },
+  "summary_data": "scaling.json",
+  "timer": {
+    "adjustable": false,
+    "implementation": "clock_gettime(CLOCK_PROCESS_CPUTIME_ID)",
+    "monotonic": true,
+    "name": "time.process_time",
+    "resolution_seconds": 1e-09,
+    "unit_in_csv": "seconds"
+  },
+  "timing_data": "scaling.csv"
+}
