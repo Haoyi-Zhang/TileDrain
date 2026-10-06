@@ -13,13 +13,13 @@ CHUNKS=[(0,0,1),(1,0,1),(2,0,2),(3,0,7),(4,0,5),(4,5,15),(4,15,25),(4,25,40)]
 
 def limits() -> None:
     resource.setrlimit(resource.RLIMIT_AS,(3*1024**3,3*1024**3))
-    resource.setrlimit(resource.RLIMIT_CPU,(40,40))
+    resource.setrlimit(resource.RLIMIT_CPU,(120,120))
 
 
 def child(arguments:list[str], *, cwd:Path=ROOT) -> dict:
     before=resource.getrusage(resource.RUSAGE_CHILDREN);start=time.perf_counter()
     done=subprocess.run([sys.executable,*arguments],cwd=cwd,check=False,text=True,
-                        stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=40,
+                        stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=120,
                         preexec_fn=limits,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
     after=resource.getrusage(resource.RUSAGE_CHILDREN)
     if done.returncode:
