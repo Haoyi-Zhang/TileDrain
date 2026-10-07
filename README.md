@@ -46,25 +46,47 @@ The semantic demonstrator has two unsigned registers and one carry bit per conte
 The bounded runner requires Linux or another POSIX system providing Python's `resource` module and `RLIMIT_AS`; it was tested on Linux. RSS units in the retained records are Linux KiB. Native Windows execution of the bounded runner is not claimed. Use the complete runner, which executes one bounded child at a time:
 
 ```sh
-python reproduce.py --output results/reproduced
+python reproduce.py --output results/reproduced-single-p
 ```
 
-For environments with short interactive command timeouts, run resumable chunks instead:
+The complete runner executes 44 exact shards: the unchanged n=0..3 intervals and all 40 single-P-index n=4 intervals [0,1) through [39,40), in that order. This retains all 729,088 n=4 instances (737,009 through n=4); it does not sample or skip cases. No smaller shard is guaranteed to finish on every host.
+
+Start the new partition in a fresh, initially absent output directory such as `results/reproduced-single-p`. Do not copy retained campaign products into it or mix an older coarse n=4 partition with the new one: overlapping intervals remain an error. Resume only the same completed intervals in that directory; a JSON summary without its required raw product remains incomplete. The CI output directory is job-local under `RUNNER_TEMP`; its existing always-upload step retains observations without replacing the historical campaign.
+
+For environments with short interactive command timeouts, run the same resumable partition instead (POSIX shell):
 
 ```sh
-python reproduce.py --output results/reproduced --task exact --n 0
-python reproduce.py --output results/reproduced --task exact --n 1
-python reproduce.py --output results/reproduced --task exact --n 2
-python reproduce.py --output results/reproduced --task exact --n 3
-python reproduce.py --output results/reproduced --task exact --n 4 --start 0 --stop 5
-python reproduce.py --output results/reproduced --task exact --n 4 --start 5 --stop 15
-python reproduce.py --output results/reproduced --task exact --n 4 --start 15 --stop 25
-python reproduce.py --output results/reproduced --task exact --n 4 --start 25 --stop 40
-python reproduce.py --output results/reproduced --task remaining
-python reproduce.py --output results/reproduced --task reconcile
+python reproduce.py --output results/reproduced-single-p --task exact --n 0
+python reproduce.py --output results/reproduced-single-p --task exact --n 1
+python reproduce.py --output results/reproduced-single-p --task exact --n 2
+python reproduce.py --output results/reproduced-single-p --task exact --n 3
+for p in $(seq 0 39); do
+  python reproduce.py --output results/reproduced-single-p \
+    --task exact --n 4 --start "$p" --stop "$((p + 1))" || exit 1
+done
+python reproduce.py --output results/reproduced-single-p --task remaining
+python reproduce.py --output results/reproduced-single-p --task reconcile
 ```
 
-Every scientific child has a 3 GiB address-space cap, a 120-second CPU ceiling, and a 120-second wall timeout. The retained campaign used 40-second child limits; the current limits allow for slower shared runners without changing any scientific input or comparison. The complete runner remains synchronous and does not schedule background work. A slower machine can split a P-index interval into smaller nonoverlapping intervals using the same interface; this changes only the chunk partition, not the scientific input set. Do not combine overlapping result chunks. The largest retained partition uses 15 P indices after a measured bounded execution; this was an execution-granularity change, not a change to inclusion rules.
+The controller applies a 3 GiB address-space cap, a 120-second CPU ceiling and a 120-second wall timeout. A scientific child's own stricter limits still apply: `src/experiment.py` resets its CPU soft and hard limits to 40 seconds. Thus the controller's ceiling does not give that experiment 120 CPU seconds. These limits are unchanged. The complete runner remains synchronous and does not schedule background work. A slower machine can split a P-index interval into smaller nonoverlapping intervals using the same interface; this changes only the chunk partition, not the scientific input set. Do not combine overlapping result chunks. The largest retained partition uses 15 P indices after a measured bounded execution; this was an execution-granularity change, not a change to inclusion rules.
+
+On a failed child, the controller prints its return code, termination signal number/name when available, and captured standard output/error. It also appends the same failure-only record to `reproduction-failures.jsonl` outside temporary scientific stages. A controller wall timeout is distinguished from a returned termination signal; a signal alone does not identify whether a CPU limit, memory pressure or an external action caused termination. Exact enumeration emits flushed progress on standard error before and after each P index, with cumulative completed instance counts. No partial output or failure diagnostic is a completed-result marker. The complete scientific comparisons and nonzero failure exit remain mandatory.
+
+The six portable diagnostics regressions run explicitly before reproduction in scientific CI:
+
+```sh
+python -B tests/reproduction_diagnostics_regression.py
+```
+
+They check failure formatting, partial timeout output, exact domain sizes by independent graph reachability, and one-event scientific output with in-memory capture. They do not exercise POSIX limits or complete a failed campaign.
+
+The partition regression is also an explicit pre-campaign CI step:
+
+```sh
+python -B tests/partition_regression.py
+```
+
+It checks full P-index/count coverage, split raw-row/counter equivalence through two events, and actual capacity/aggregation rejection of gaps, overlaps and corruption with in-memory I/O. Its two controller admission/resume checks require POSIX `resource` and are explicitly skipped on unsupported hosts; Linux CI runs them. These tests do not constitute a fresh complete campaign. The historical 25- and 61-invocation receipts below retain their original partitions and observations, not current execution counts.
 
 The final reconciliation checks raw exact rows against chunk summaries, capacity-group totals, complete P-index coverage, all scientific summary values against the retained campaign, and decompressed deterministic scientific result files. CPU time, wall time, and RSS are observations and are not expected to match across machines. It does not require identical gzip headers, file timestamps, fonts, private paths, omitted caches, network access, or external accounts. Run the documented commands from a clean extraction rather than treating retained results as a fresh run.
 
@@ -88,7 +110,7 @@ Structural timing uses synthetic instances of 16–512 events. For the retained 
 
 ## Files and evidence
 
-`.github/workflows/scientific-checks.yml` is configured for the flat artifact repository root on Ubuntu 24.04, on pushes to `main` or manual dispatch. It runs the existing material-integrity gate and complete POSIX reproduction, including scientific reconciliation, with a 12-minute whole-command timeout, a 15-minute job timeout, and 120-second per-child limits. The outer shell also bounds virtual memory to 3 GiB and CPU time to 600 seconds. Raw outputs and diagnostics are uploaded even when a gate fails. Workflow configuration alone is not evidence of an executed run; it does not build the sibling manuscript.
+`.github/workflows/scientific-checks.yml` is configured for the flat artifact repository root on Ubuntu 24.04, on pushes to `main` or manual dispatch. It runs the existing material-integrity gate, the lane, diagnostics and partition regressions and complete POSIX reproduction, including scientific reconciliation, with a 12-minute whole-command timeout, a 15-minute job timeout, and 120-second controller per-child ceilings (the experiment's 40-second CPU cap still applies). The outer shell also bounds virtual memory to 3 GiB and CPU time to 600 seconds. Raw outputs and diagnostics are uploaded even when a gate fails. Workflow configuration alone is not evidence of an executed run; it does not build the sibling manuscript.
 The workflow completed in run 37443748741. All 25 recorded invocations exited successfully, including the unit suite and three documented interfaces. Direct comparison covers all 737,009 exact rows, the other deterministic result files, and all 36 scaling rows apart from measured CPU intervals. Summed child intervals were 105.73 wall seconds and 105.64 CPU seconds; maximum recorded child RSS was 166,492 KiB. Run-matched scaling metadata records Python 3.12.14, Linux x86-64 and an AMD EPYC 9V45 host. `results/measurements/` retains the current invocation records, reconciliation, scaling CSV and host record without replacing the older campaign timings.
 
 `src/` contains structural analysis, certificate validation, arithmetic/state adapters, the permutation oracle, and bounded experiments. `proofs/model.md` contains the complete written arguments and explicit counterexamples. `results/campaign/` contains claim-linked raw rows, traces, certificates, summaries, and the partial historical scaling-environment record. `results/summary/` contains reconciled manuscript data. `results/resource-usage.csv` retains measured CPU, wall-time, RSS, and command records for the final 24-invocation campaign. `results/clean-reproduction.json` records full deterministic reconciliation, while `results/clean-reproduction-resources.json` and `results/clean-reproduction-invocations.jsonl` retain the corresponding measured invocations. The fresh run's `clean-reproduction-scaling.csv` and `clean-reproduction-scaling-environment.json` are a matched pair kept for provenance; they are not the manuscript timing source. The final extraction rechecks unchanged scientific sources and frozen inputs; its separate smoke record does not pretend to be a second full campaign. `claim_evidence_ledger.csv` maps material claims to proofs, programs, inputs, and raw results. `literature_matrix.csv` records the completed 12-paper TACO, five-paper influential/award, and five-paper adjacent-venue calibration; `reference_audit.csv` records all 36 cited bibliography keys, identifiers, manuscript roles, and metadata checks; `external_resources.csv` records acquisition and use. No experimental upstream baseline code is embedded or silently modified.

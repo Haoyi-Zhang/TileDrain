@@ -7,8 +7,20 @@ ROOT=Path(__file__).resolve().parent
 sys.path.insert(0,str(ROOT/'src'))
 from oracle import all_forward_posets
 from aggregate import aggregate
+from child_diagnostics import failure_record, failure_message
 METRICS={'cpu_seconds','wall_seconds','peak_rss_kib','workers'}
-CHUNKS=[(0,0,1),(1,0,1),(2,0,2),(3,0,7),(4,0,5),(4,5,15),(4,15,25),(4,25,40)]
+# Same complete exact domain; one P index per n=4 child, as in the retained run.
+CHUNKS=[
+    (0,0,1),(1,0,1),(2,0,2),(3,0,7),
+    (4,0,1),(4,1,2),(4,2,3),(4,3,4),(4,4,5),
+    (4,5,6),(4,6,7),(4,7,8),(4,8,9),(4,9,10),
+    (4,10,11),(4,11,12),(4,12,13),(4,13,14),(4,14,15),
+    (4,15,16),(4,16,17),(4,17,18),(4,18,19),(4,19,20),
+    (4,20,21),(4,21,22),(4,22,23),(4,23,24),(4,24,25),
+    (4,25,26),(4,26,27),(4,27,28),(4,28,29),(4,29,30),
+    (4,30,31),(4,31,32),(4,32,33),(4,33,34),(4,34,35),
+    (4,35,36),(4,36,37),(4,37,38),(4,38,39),(4,39,40),
+]
 
 
 def limits() -> None:
@@ -16,17 +28,35 @@ def limits() -> None:
     resource.setrlimit(resource.RLIMIT_CPU,(120,120))
 
 
-def child(arguments:list[str], *, cwd:Path=ROOT) -> dict:
+def child(arguments:list[str], *, cwd:Path=ROOT, failure_output:Path|None=None) -> dict:
     before=resource.getrusage(resource.RUSAGE_CHILDREN);start=time.perf_counter()
-    done=subprocess.run([sys.executable,*arguments],cwd=cwd,check=False,text=True,
-                        stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=120,
-                        preexec_fn=limits,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+    try:
+        done=subprocess.run([sys.executable,*arguments],cwd=cwd,check=False,text=True,
+                            stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=120,
+                            preexec_fn=limits,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+    except subprocess.TimeoutExpired as exc:
+        record=failure_record(arguments,None,exc.stdout,exc.stderr)
+        report_failure(failure_output,record)
+        raise RuntimeError(failure_message(record)) from exc
     after=resource.getrusage(resource.RUSAGE_CHILDREN)
     if done.returncode:
-        raise RuntimeError('child failed: '+' '.join(arguments)+'\n'+done.stdout+'\n'+done.stderr)
+        record=failure_record(arguments,done.returncode,done.stdout,done.stderr)
+        report_failure(failure_output,record)
+        raise RuntimeError(failure_message(record))
     return {'command':arguments,'cpu_seconds':after.ru_utime+after.ru_stime-before.ru_utime-before.ru_stime,
             'wall_seconds':time.perf_counter()-start,'peak_child_rss_kib':after.ru_maxrss,
             'returncode':done.returncode}
+
+
+def report_failure(out:Path|None,record:dict) -> None:
+    # Kept outside temporary scientific stages, including hard-killed children.
+    # Append-only diagnostics never act as a completed-result/resumption marker.
+    if out is None:return
+    try:
+        with (out/'reproduction-failures.jsonl').open('a',encoding='utf-8') as f:
+            f.write(json.dumps(record,sort_keys=True)+'\n')
+    except OSError as exc:
+        print('Could not retain child failure diagnostics: '+str(exc),file=sys.stderr,flush=True)
 
 
 def save_measurement(out:Path,row:dict) -> None:
@@ -43,7 +73,7 @@ def job(out:Path,name:str,arguments:list[str],raw_names:tuple[str,...]=()) -> No
         print('Retained completed chunk: '+name,flush=True);return
     with tempfile.TemporaryDirectory(prefix='.reproduce-',dir=out) as tmp:
         stage=Path(tmp)
-        measured=child([*arguments,'--output',str(stage)])
+        measured=child([*arguments,'--output',str(stage)],failure_output=out)
         if not (stage/(name+'.json')).is_file():raise ValueError('child omitted its summary')
         products=sorted(stage.iterdir())
         if any((out/p.name).exists() for p in products):raise ValueError('refusing to overwrite partial result files for '+name)
@@ -79,13 +109,13 @@ def remaining(out:Path) -> None:
         name=f'capacity-groups-{n}'
         job(out,name,['src/capacity_audit.py','--n',str(n),'--source',str(out)],(name+'.csv.gz',))
     job(out,'weighted-obstructions',['src/capacity_audit.py','--weighted'],('weighted-obstructions.jsonl.gz',))
-    measured=child(['-m','unittest','discover','-s','tests','-v']);measured['task']='unit-tests';save_measurement(out,measured)
+    measured=child(['-m','unittest','discover','-s','tests','-v'],failure_output=out);measured['task']='unit-tests';save_measurement(out,measured)
     with tempfile.TemporaryDirectory(prefix='.interface-',dir=out) as tmp:
         cert=Path(tmp)/'certificate.json'
         for args in (['src/cli.py','analyze','inputs/example.json','--output',str(cert)],
                      ['src/cli.py','check','inputs/example.json','--certificate',str(cert)],
                      ['src/cli.py','robust','inputs/example.json']):
-            measured=child(args);measured['task']='documented-interface'
+            measured=child(args,failure_output=out);measured['task']='documented-interface'
             measured['command']=[s.replace(str(cert),'<temporary-certificate>') for s in measured['command']]
             save_measurement(out,measured)
     print('Unit tests and all documented interface commands passed.',flush=True)

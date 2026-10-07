@@ -121,6 +121,8 @@ def exact(n,start,stop,out):
     with gzip.open(raw,'wt',newline='') as f:
       writer=csv.writer(f);writer.writerow(['p','q','lane_bits','capacity_0','capacity_1','unsupported','least','drain_or_left','right','feasible_count','capability_only_safe','capability_order_safe'])
       for pi in range(start,stop):
+       print(f'Exact progress: start n={n} p={pi} stop={stop} completed_instances={summary["instances"]}',
+             file=sys.stderr,flush=True)
        p=ps[pi]
        for qi,q in enumerate(ps):
         if any(a&~b for a,b in zip(p,q)):continue
@@ -164,6 +166,8 @@ def exact(n,start,stop,out):
            summary['capability_only_unsafe']+=int(not su);summary['capability_order_unsafe']+=int(not so)
            summary['instances']+=1;summary['feasible_cuts']+=len(feasible)
            writer.writerow([pi,qi,lane_bits,*cap,u,int(isleast),chosen,right,len(feasible),int(su),int(so)])
+       print(f'Exact progress: complete n={n} p={pi} completed_instances={summary["instances"]}',
+             file=sys.stderr,flush=True)
     return summary
 
 
