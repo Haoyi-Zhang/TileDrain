@@ -126,9 +126,11 @@ def _safe_admitted(x: Instance, d: int) -> bool:
         return False
     if any(x.q[e] & ~d for e in bits(d)) or x.unsupported & ~d:
         return False
-    for lane, cap in enumerate(x.capacity):
-        if sum(x.weight[i] for i in range(x.n) if x.lane[i] == lane and not (d >> i & 1)) > cap:
-            return False
+    loads = [0] * len(x.capacity)
+    for i in bits(((1 << x.n) - 1) ^ d):
+        loads[x.lane[i]] += x.weight[i]
+    if any(load > cap for load, cap in zip(loads, x.capacity)):
+        return False
     for j in range(x.n):
         if d >> j & 1:
             continue

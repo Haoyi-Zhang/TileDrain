@@ -31,6 +31,7 @@ jobs:
             ulimit -v 3145728
             ulimit -t 600
             python -B .github/scripts/check_repository.py
+            python -B tests/lane_regression.py
             python -B reproduce.py --output "$P063_OUTPUT"
           ' 2>&1 | tee "$RUNNER_TEMP/p063-check-logs/run.log"
       - name: Preserve raw results and diagnostics, including failed runs

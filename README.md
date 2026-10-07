@@ -23,6 +23,16 @@ A certificate is meaningful only for the complete instance with which it is chec
 
 The small interface, unit tests, and pure finite-check functions do not require the POSIX-only `resource` module. Resource limits are imported by the bounded command-line experiment runners when invoked; the complete reproduction runner below still requires POSIX.
 
+The direct safety helper accumulates exact retained loads in one event pass into at most 512 lane counters, after mask, source-ideality and support checks. Cross-lane order checks and necessity explanations are unchanged. The independently implemented validator retains its separate scalar lane sums. No timing improvement is inferred from this implementation change; the retained timings below are historical observations.
+
+An additional finite regression runs separately from the 30-test discovery suite:
+
+```sh
+python -B tests/lane_regression.py
+```
+
+Its six tests cover the complete weighted two-event domain (1,005 instances and all 3,977 subset masks), eight boundary/example instances, the first 16 frozen five-event inputs, maximum admitted event/lane counts, invalid masks and explanation priority, and the 31 declared controls. Its test-local reference enumerates source prefixes and FIFO interleavings rather than using the production feasibility formula. This is bounded implementation checking, not a fresh full campaign or a general proof. The scientific CI workflow invokes it explicitly before the unchanged full reproduction.
+
 ## Exact input grammar
 
 `inputs/example.json` is the minimal format example. `p[j]` and `q[j]` are predecessor bitmasks; all set bits must be less than j. Orders must already be transitively closed, and P must be included in Q. The interface rejects inconsistent orders rather than repairing them. Events are numbered 0 through n-1 in one supplied common topological order; that numbering fixes FIFO order and is not optimized.
