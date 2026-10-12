@@ -34,8 +34,8 @@ class EvidenceLedgerTests(unittest.TestCase):
 
         self.assertEqual(len(references), 36)
         self.assertEqual(len(literature), 22)
-        self.assertEqual(len(resources), 29)
-        self.assertEqual(len(claims), 26)
+        self.assertEqual(len(resources), 28)
+        self.assertEqual(len(claims), 25)
 
         for collection in (references, literature, resources, claims):
             for row in collection:
