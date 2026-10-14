@@ -26,6 +26,12 @@ def read_rectangular_csv(name: str):
 
 
 class EvidenceLedgerTests(unittest.TestCase):
+    def test_wharf_ledger_pins_the_cited_preprint(self):
+        records = {row['bib_key']: row for row in read_rectangular_csv('reference_audit.csv')}
+        wharf = records['yang2024wharf']
+        self.assertEqual(wharf['doi_or_stable_url'], 'https://arxiv.org/abs/2410.15894v1')
+        self.assertIn('2410.15894v1', wharf['venue'])
+
     def test_evidence_ledgers_are_rectangular_complete_and_unique(self):
         references = read_rectangular_csv("reference_audit.csv")
         literature = read_rectangular_csv("literature_matrix.csv")
