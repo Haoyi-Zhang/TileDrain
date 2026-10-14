@@ -124,4 +124,4 @@ The artifact contains the written mathematical argument, certificate checker, fi
 
 ## License
 
-New code and accompanying generated scientific materials are offered under the MIT terms in `LICENSE`, to the extent copyright applies. This does not assert exclusive copyright in AI-generated material. Scholarly papers listed in the resource ledger are cited, not redistributed or relicensed. Publisher typesetting files are not part of this standalone repository.
+New code and accompanying generated scientific materials are offered under the MIT terms in `LICENSE`, to the extent copyright applies. This does not assert exclusive copyright in every accompanying material. Scholarly papers listed in the resource ledger are cited, not redistributed or relicensed. Publisher typesetting files are not part of this standalone repository.
