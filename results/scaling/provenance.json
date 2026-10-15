@@ -1,0 +1,167 @@
+{
+  "adoption_basis": "Successful source-bound workflow output with complete runtime and matching deterministic scientific results; no selection by speed or cross-host timing inference.",
+  "repository": "Haoyi-Zhang/TileDrain",
+  "source_commit": "4b44f61406cb65b83b6311874ab56c4b1445685e",
+  "workflow_run_id": 38595253317,
+  "workflow_url": "https://github.com/Haoyi-Zhang/TileDrain/actions/runs/38595253317",
+  "artifact_id": 11909985584,
+  "artifact_digest": "sha256:5ebce33ef73b1edb831ea2b4bda25ede89fbdf020be63c58558b08440f4a1016",
+  "adopted_utc": "2026-10-15T02:47:49.927107+00:00",
+  "files": {
+    "scaling.csv": "020f6640d77dd0bc69fc3f19783b83c96b493a10ccd4851a4e505dc1921a4083",
+    "scaling.json": "879b950a3fdc626acc8c166b0d6707739df56f1d4e1600ec621278f9e253fd21",
+    "scaling-environment.json": "b56038a2bea60e1900df47bf77d5d07e5ad2ca0040235953d6d5c6ae31a3c64b"
+  },
+  "source_files": [
+    {
+      "path": "src/contracts.py",
+      "git_blob": "17faf4319097e2e2137705e46f379e5e06e9e6f3",
+      "sha256": "7da64b5f2bc6ab5e5712fee44f599216aac0ed70aab3a9127daa92175ce7a2c4"
+    },
+    {
+      "path": "src/experiment.py",
+      "git_blob": "c5b4fd5b818323658ca06f0e04b322668499185d",
+      "sha256": "945d8b02368d41dd55d1d9bd4317953f9446ca0bd9b1100ccb24df27eb8e0b7d"
+    },
+    {
+      "path": "src/general.py",
+      "git_blob": "cf0bf513faccbd073cdcc3e92dd70c2eb29ea815",
+      "sha256": "6e73ebf110372ae3a638e5784d10bffaa8a58231fa5f107925e49846ee90141a"
+    },
+    {
+      "path": "src/robust.py",
+      "git_blob": "a366a8eaf2d189e52848459317a2953b09fa6f54",
+      "sha256": "397705b97280c6e40fde3fce58024bea98bcde4754682d4a53c9ed44cebbbfeb"
+    }
+  ],
+  "source_binding_scope": "Exact timing driver and three timed implementation modules; reporting/aggregation and output-protection code are outside these method intervals.",
+  "executed_source_snapshot": [
+    {
+      "path": ".github/workflows/scientific-checks.yml",
+      "git_blob": "598275c4008e961b89bf2a1f3ce2c01439d4f281",
+      "sha256": "39b06ae405026bb7c8907b922a0cd5bfe00d15da4db03ee60063da29662d170c"
+    },
+    {
+      "path": "inputs/epochs.json",
+      "git_blob": "1d64d52be42bfa973902f1d52301ee7fdd773bdb",
+      "sha256": "db6b4a445753b755bdb6a20b3ef05017ca4c2d73c2c2d27b6c8c555397db30b2"
+    },
+    {
+      "path": "inputs/example.json",
+      "git_blob": "bc329b4f12a2f1325340aed8fa63c1b11983969e",
+      "sha256": "645ee9a1a257c1b829b1cf6a9007a5cff3f90e6696dae641de553a04d5cbdff2"
+    },
+    {
+      "path": "inputs/fork.json",
+      "git_blob": "2f3b55d7d4d26696365c5ebc88592fa8d3d4c5af",
+      "sha256": "8d9291e973a9ff01fb9fdce652c6c15ed963d727701ed28ad5e6c5e22e5a06fd"
+    },
+    {
+      "path": "inputs/weighted.json",
+      "git_blob": "f965d9616fdc099b386d77a5a5cebea35705ffaa",
+      "sha256": "9cc256600f167f40d6e90d0eeeeb6ffbf585f2b9ad2ce3f38b892a57dff5b773"
+    },
+    {
+      "path": "reproduce.py",
+      "git_blob": "c35275dc4384d278fc7a2848b5ecc11fd03840e5",
+      "sha256": "9fc668e376e0ad4f8c273a618fa3730d65ba25a50c0dc448b1ceee2904ae1289"
+    },
+    {
+      "path": "src/aggregate.py",
+      "git_blob": "de76b855e8b63abba909a2ded00382fcfe87de0f",
+      "sha256": "4634ab3d00dbab116c29d088de7e1996a86b5f22d2b11eb575026aed42cd0e27"
+    },
+    {
+      "path": "src/capacity_audit.py",
+      "git_blob": "b974a2e185d7b779dae9a84d99ef4aa814fb8fb2",
+      "sha256": "1c4dc259ee11a3b9c87992b558d60fc656325729bc02d1754a10ed03633a344b"
+    },
+    {
+      "path": "src/child_diagnostics.py",
+      "git_blob": "59a0c8f86eb97d681ff401d88ea74f99c6fb771f",
+      "sha256": "c2b15934a6b90a4ac954c88774df1edb0693d5c3a701b3ea3d398ce76f00ddb4"
+    },
+    {
+      "path": "src/cli.py",
+      "git_blob": "7c835edeb5ff42879bbe084ef2033e5aff70ed5a",
+      "sha256": "3914d40c940495c406dd162aee78cd5295f4f4617acbc7d8f577ec61197b99c8"
+    },
+    {
+      "path": "src/contracts.py",
+      "git_blob": "17faf4319097e2e2137705e46f379e5e06e9e6f3",
+      "sha256": "7da64b5f2bc6ab5e5712fee44f599216aac0ed70aab3a9127daa92175ce7a2c4"
+    },
+    {
+      "path": "src/experiment.py",
+      "git_blob": "c5b4fd5b818323658ca06f0e04b322668499185d",
+      "sha256": "945d8b02368d41dd55d1d9bd4317953f9446ca0bd9b1100ccb24df27eb8e0b7d"
+    },
+    {
+      "path": "src/general.py",
+      "git_blob": "cf0bf513faccbd073cdcc3e92dd70c2eb29ea815",
+      "sha256": "6e73ebf110372ae3a638e5784d10bffaa8a58231fa5f107925e49846ee90141a"
+    },
+    {
+      "path": "src/independent.py",
+      "git_blob": "33b2d7d68c51bde846c7e9b40469c2a5110a9f5d",
+      "sha256": "43692fca65e46f6c2b42f1c19f75a81fa23814ca2ca239a9f838b1706148fa2c"
+    },
+    {
+      "path": "src/inputs.py",
+      "git_blob": "5fc378645e1bd525867195e4a77f046c54f85eca",
+      "sha256": "452beaabc3c01e2fc0997ec1cd74891190a9acbac851a674f50839f86cef0236"
+    },
+    {
+      "path": "src/mutations.py",
+      "git_blob": "a35dfae48511505812db0fc31c1512008a168bd2",
+      "sha256": "08bf8c10aa30e0401779a53379623a7cff228614013292460fb645aa13db8285"
+    },
+    {
+      "path": "src/oracle.py",
+      "git_blob": "3c9fff222a792017ea99488a632e087b5990294f",
+      "sha256": "fdef98ac54625e03fc2fa7eb44c9c4c49a7d66d20fccf683cf98cfb2d9cd3c00"
+    },
+    {
+      "path": "src/robust.py",
+      "git_blob": "a366a8eaf2d189e52848459317a2953b09fa6f54",
+      "sha256": "397705b97280c6e40fde3fce58024bea98bcde4754682d4a53c9ed44cebbbfeb"
+    },
+    {
+      "path": "src/semantics.py",
+      "git_blob": "1494c3549200049a5a0ca7a5618806558c52bc7b",
+      "sha256": "3631c4d372c029dbc40cb9fe0f7cb0e89d5e6b8a7e011da25d81d4f988d8b9cb"
+    },
+    {
+      "path": "src/simulator.py",
+      "git_blob": "61ab80c9b74253992f73029fa9e66fca982ed685",
+      "sha256": "a1f76aed11b7adf71f6aafdba6fd151c81d4cdd0eac7fb09d66375e0e02fdeea"
+    },
+    {
+      "path": "src/weighted_exhaustive.py",
+      "git_blob": "bef3a30cae6228f6f7611a3c3bbbe6b03d38579d",
+      "sha256": "2cab745e3ad5f487678b348a54401c58996527f7bf7e2d46c19db9c40fe2a26d"
+    }
+  ],
+  "scaling_invocation": {
+    "command": [
+      "src/experiment.py",
+      "--suite",
+      "scaling",
+      "--output",
+      "<output>"
+    ],
+    "cpu_seconds": 3.4817629999999973,
+    "peak_child_rss_kib": 30496,
+    "returncode": 0,
+    "task": "scaling",
+    "wall_seconds": 3.483196337999999
+  },
+  "scientific_reconciliation": {
+    "exact_rows_compared": 737009,
+    "other_deterministic_outputs_equal": true,
+    "non_timing_summary_equal": true,
+    "scaling_non_timing_rows_equal": true
+  },
+  "measurement_interpretation": "36 rows,12 shapes,3 repetitions,108 process-CPU intervals;23 recorded zeros retained. Nominal clock API resolution is not effective timing precision. No performance ratio is reported.",
+  "historical_data": "Existing campaign, measurements and clean-reproduction bundles remain unchanged and are not active paper timing inputs."
+}

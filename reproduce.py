@@ -8,6 +8,7 @@ sys.path.insert(0,str(ROOT/'src'))
 from oracle import all_forward_posets
 from aggregate import aggregate
 from child_diagnostics import failure_record, failure_message
+from scaling_report import read_bundle
 METRICS={'cpu_seconds','wall_seconds','peak_rss_kib','workers'}
 # Same complete exact domain; one P index per n=4 child, as in the retained run.
 CHUNKS=[
@@ -129,16 +130,7 @@ def exact_rows(folder:Path,n:int):
 
 
 def scaling_environment_status(path:Path) -> str:
-    data=json.loads(path.read_text(encoding='utf-8'))
-    if data.get('timing_data')!='scaling.csv':
-        raise ValueError('scaling environment record is not linked to scaling.csv')
-    timer=data.get('timer')
-    if type(timer) is not dict or timer.get('name')!='time.process_time' or timer.get('unit_in_csv')!='seconds':
-        raise ValueError('scaling environment record has an incompatible timer declaration')
-    status=data.get('record_status')
-    if type(status) is not str or not status:
-        raise ValueError('scaling environment record lacks provenance status')
-    return status
+    return read_bundle(path.parent)['environment']['record_status']
 
 
 def reconcile(out:Path) -> None:
@@ -167,9 +159,8 @@ def reconcile(out:Path) -> None:
     for name in ('arithmetic-domain.json','mutation-controls.json'):
         if json.loads((canonical/name).read_text())!=json.loads((out/name).read_text()):raise ValueError('deterministic JSON mismatch: '+name)
         compared.append(name)
-    with (canonical/'scaling.csv').open(newline='') as a,(out/'scaling.csv').open(newline='') as b:
-        def stable(rows):return [{k:v for k,v in r.items() if not k.endswith('_seconds')} for r in csv.DictReader(rows)]
-        if stable(a)!=stable(b):raise ValueError('scaling shape or correctness mismatch')
+    if read_bundle(canonical)['non_timing_rows']!=read_bundle(out)['non_timing_rows']:
+        raise ValueError('scaling shape or correctness mismatch')
     retained_environment=scaling_environment_status(canonical/'scaling-environment.json')
     reproduced_environment=scaling_environment_status(out/'scaling-environment.json')
     result={'scientific_summaries_equal':True,'exact_rows_compared_by_n':counts,'exact_rows_equal':True,
@@ -189,7 +180,7 @@ def main() -> int:
     p.add_argument('--task',choices=('all','exact','remaining','reconcile'),default='all')
     p.add_argument('--n',type=int,choices=range(5));p.add_argument('--start',type=int,default=0);p.add_argument('--stop',type=int)
     a=p.parse_args();out=a.output.resolve()
-    protected=[(ROOT/s).resolve() for s in ('src','tests','inputs','proofs','results/campaign','results/summary')]
+    protected=[(ROOT/s).resolve() for s in ('src','tests','inputs','proofs','results/campaign','results/summary','results/scaling')]
     if out==ROOT or any(out==d or d in out.parents or out in d.parents for d in protected):p.error('output would collide with retained project inputs or results')
     out.mkdir(parents=True,exist_ok=True)
     try:

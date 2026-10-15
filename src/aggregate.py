@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse,csv,gzip,json,statistics
 from pathlib import Path
 from oracle import all_forward_posets
+from scaling_report import read_bundle
 ROOT=Path(__file__).resolve().parents[1]
 
 EXACT_FIELDS=('instances','structures','destination_traces_examined','feasible_cuts','least','no_least',
@@ -51,14 +52,9 @@ def aggregate(folder:Path,output:Path) -> dict:
         if name=='weighted-exhaustive':
             bad=sum(row[k] for row in x['by_n'] for k in row if any(s in k for s in ('mismatches','failures')))
             if bad:raise ValueError('recorded scientific failure: '+name)
-    with (folder/'scaling.csv').open(newline='') as f:raw=list(csv.DictReader(f))
-    medians=[]
-    for n in (16,32,64,128,256,512):
-        for density in ('sparse','dense'):
-            selected=[r for r in raw if int(r['n'])==n and r['density']==density]
-            if len(selected)!=3:raise ValueError('incomplete scaling cell')
-            medians.append({'n':n,'density':density,**{k:statistics.median(float(r[k])*1000 for r in selected)
-                           for k in ('general_cpu_seconds','check_cpu_seconds','aligned_cpu_seconds')}})
+    scaling=read_bundle(folder)
+    # Compatibility: these historical key names carry millisecond values.
+    medians=[{'n':c['n'],'density':c['density'],**{m:c[m]['median_ms'] for m in ('general_cpu_seconds','check_cpu_seconds','aligned_cpu_seconds')}} for c in scaling['cells']]
     result['scaling_median_ms']=medians
     output.mkdir(parents=True,exist_ok=True)
     (output/'summary.json').write_text(json.dumps(result,indent=2)+'\n')
