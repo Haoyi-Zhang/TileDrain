@@ -1,5 +1,7 @@
 # Capacity-Robust Drain Certificates
 
+The two explanatory diagrams are self-contained Python vector figures. Install optional rendering dependencies with `python -m pip install -r scripts/requirements-schematics.txt`, then run `python scripts/draw_schematics.py` to generate them or add `--check` to verify freshness. The renderer checks the exact running and fork inputs before drawing, embeds its fonts, and requires no TeX installation. Scientific reproduction remains standard-library-only.
+
 This repository studies **least source-drain certificates for the pending-work quiescence subproblem of sealed FIFO-tile migration**. It is a standalone, standard-library Python artifact for a finite mathematical model, not a hardware verifier, ISA emulator, migration service, or production implementation.
 
 The mathematical proof is in `proofs/model.md`. A migration instance fixes an architectural event order P, an executable source order Q extending P, destination FIFO assignments, positive storage sizes, independent lane capacities, and unsupported operations. Source drains must be Q-ideals. Operation identities are observable. Exact state conversion and unique atomic completion ownership are separate assumptions.
